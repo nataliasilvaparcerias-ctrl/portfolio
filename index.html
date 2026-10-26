@@ -133,13 +133,14 @@ section[id]{scroll-margin-top:90px}
 .chip-reel b{display:block;font-family:var(--ui);font-weight:600;font-size:.95rem;line-height:1.2}
 .chip-reel small{display:block;font-size:.68rem;opacity:.8}
 
-/* Faixa gigante de marcas */
-.faixa{background:var(--marfim);color:var(--vinho-escuro);padding:clamp(18px,3vw,30px) 0;overflow:hidden;position:relative;z-index:3;border-bottom:1px solid rgba(94,20,20,.12)}
-.faixa-trilho{display:flex;width:max-content;animation:rolar 80s linear infinite}
+/* Faixa de logos das marcas */
+.faixa{background:#f4f5f0;padding:clamp(22px,3vw,34px) 0 clamp(26px,3.4vw,38px);overflow:hidden;position:relative;z-index:3;border-bottom:1px solid rgba(94,20,20,.12)}
+.faixa-titulo{text-align:center;font-family:var(--script);font-size:clamp(2.4rem,4.4vw,3.4rem);line-height:1;color:var(--vinho);margin:0 0 clamp(14px,2vw,22px)}
+.faixa-trilho{display:flex;width:max-content;animation:rolar 70s linear infinite}
 .faixa:hover .faixa-trilho{animation-play-state:paused}
-.faixa-trilho ul{display:flex;list-style:none;margin:0;padding:0}
-.faixa-trilho li{display:flex;align-items:center;gap:.35em;padding-right:.35em;font-family:var(--display);font-size:clamp(3rem,8.5vw,7.4rem);text-transform:uppercase;white-space:nowrap;line-height:.9;letter-spacing:-.02em}
-.faixa-trilho li svg{width:.32em;height:.32em;flex:none}
+.faixa-trilho ul{display:flex;align-items:center;list-style:none;margin:0;padding:0}
+.faixa-trilho li{display:flex;align-items:center;justify-content:center;padding:0 clamp(18px,2.4vw,34px);height:clamp(44px,5vw,64px)}
+.faixa-trilho img{height:100%;width:auto;max-width:clamp(110px,13vw,170px);object-fit:contain;mix-blend-mode:multiply}
 @keyframes rolar{to{transform:translateX(-50%)}}
 
 /* ============ SOBRE ============ */
@@ -450,8 +451,9 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
 
-    <!-- Faixa gigante de marcas: os nomes vêm do array "marcas" no script -->
-    <div class="faixa" aria-label="Marcas com quem já trabalhei">
+    <!-- Faixa de logos: os logos vêm do array "logos" no script (arquivos na pasta imagens/marcas) -->
+    <div class="faixa" aria-labelledby="titulo-marcas">
+      <h2 class="faixa-titulo" id="titulo-marcas">Marcas trabalhadas</h2>
       <div class="faixa-trilho" id="faixa-trilho"></div>
     </div>
   </section>
@@ -699,16 +701,68 @@ section[id]{scroll-margin-top:90px}
    DADOS DO PORTFÓLIO: edite aqui, sem mexer no HTML
    ========================================================= */
 
-/* Marcas da faixa gigante (o número de "marcas atendidas" usa o total desta lista) */
-const marcas = [
-  "Elseve", "Beleza Brasileira", "Prohall", "O Abelheiro", "BotoHarmony", "Colgate",
-  "Mercado Livre", "Coca-Cola", "Shopee", "Volkswagen", "Principia", "PicPay",
-  "Comfort", "Dove", "Azulim", "Petrizzi", "Elegance", "Bebecê", "Top Store Joias",
-  "Aneethun", "Labotrat", "Bold", "Nitro Tech", "Neosaldina", "Estomazil", "Engov",
-  "Garnier", "Gino Colesten", "VB Camisetas", "Pure Shower", "Seculus", "Karsten",
-  "Tely Giga", "Lux", "Gocase", "Assaí Atacadista", "GEEP", "Andorinha", "Proibida",
-  "Caranguejo", "Ypê"
+/* Logos da faixa que rola na capa.
+   arquivo: nome do arquivo dentro da pasta "imagens/marcas"
+   nome: nome da marca (é lido por quem usa leitor de tela)
+   Para adicionar um logo: coloque o arquivo na pasta e acrescente uma linha aqui. */
+const logos = [
+  { arquivo: "comfort.png",            nome: "Comfort" },
+  { arquivo: "mercado-livre.png",      nome: "Mercado Livre" },
+  { arquivo: "natura.png",             nome: "Natura" },
+  { arquivo: "colgate.png",            nome: "Colgate" },
+  { arquivo: "dove.png",               nome: "Dove" },
+  { arquivo: "rexona.png",             nome: "Rexona" },
+  { arquivo: "picpay.png",             nome: "PicPay" },
+  { arquivo: "loreal.png",             nome: "L'Oréal Paris" },
+  { arquivo: "lux.png",                nome: "Lux" },
+  { arquivo: "petrizi.png",            nome: "Petrizi" },
+  { arquivo: "gav-resorts.png",        nome: "GAV Resorts" },
+  { arquivo: "globoplay.png",          nome: "Globoplay" },
+  { arquivo: "via-mia.png",            nome: "Via Mia" },
+  { arquivo: "qcy.png",                nome: "QCY" },
+  { arquivo: "o-boticario.png",        nome: "O Boticário" },
+  { arquivo: "amobeleza.png",          nome: "Amobeleza" },
+  { arquivo: "jeep.png",               nome: "Jeep" },
+  { arquivo: "jw-pei.png",             nome: "JW Pei" },
+  { arquivo: "seculus.png",            nome: "Seculus" },
+  { arquivo: "prohall.png",            nome: "Prohall" },
+  { arquivo: "inoar.png",              nome: "Inoar" },
+  { arquivo: "forever-liss.png",       nome: "Forever Liss" },
+  { arquivo: "track-field.png",        nome: "Track&Field" },
+  { arquivo: "principia.png",          nome: "Principia" },
+  { arquivo: "chilli-beans.png",       nome: "Chilli Beans" },
+  { arquivo: "cleanivy.png",           nome: "Cleanivy" },
+  { arquivo: "flowfa.png",             nome: "Flowfa" },
+  { arquivo: "emma.png",               nome: "Emma" },
+  { arquivo: "masterway.png",          nome: "Masterway Suplementos" },
+  { arquivo: "vicio-fatal.png",        nome: "Vicio Fatal" },
+  { arquivo: "daniela-rocha.png",      nome: "Daniela Rocha" },
+  { arquivo: "elegance.png",           nome: "Elegance" },              /* CONFIRMAR: logo com a letra E e a coroa */
+  { arquivo: "bio-mundo.png",          nome: "Bio Mundo" },
+  { arquivo: "etat-pur.png",           nome: "État Pur" },
+  { arquivo: "revlon.png",             nome: "Revlon" },
+  { arquivo: "dymatize.png",           nome: "Dymatize" },
+  { arquivo: "farmacia-artesanal.png", nome: "Farmácia Artesanal" },
+  { arquivo: "rosa-selvagem.png",      nome: "Rosa Selvagem" },
+  { arquivo: "niely-gold.png",         nome: "Niely Gold" },
+  { arquivo: "elseve.png",             nome: "Elseve" },
+  { arquivo: "pantene.png",            nome: "Pantene" },
+  { arquivo: "eucerin.png",            nome: "Eucerin" },
+  { arquivo: "shein.png",              nome: "Shein" }
 ];
+
+/* Marcas com quem já trabalhei, mas que ainda não têm logo na faixa.
+   Quando tiver o logo, mova a marca para a lista "logos" acima. */
+const marcasSemLogo = [
+  "Beleza Brasileira", "O Abelheiro", "BotoHarmony", "Coca-Cola", "Shopee", "Volkswagen",
+  "Azulim", "Bebecê", "Top Store Joias", "Aneethun", "Labotrat", "Bold", "Nitro Tech",
+  "Neosaldina", "Estomazil", "Engov", "Garnier", "Gino Colesten", "VB Camisetas",
+  "Pure Shower", "Karsten", "Tely Giga", "Gocase", "Assaí Atacadista", "GEEP",
+  "Andorinha", "Proibida", "Caranguejo", "Ypê"
+];
+
+/* Todas as marcas (o número de "marcas atendidas" usa o total desta lista) */
+const marcas = [...logos.map((l) => l.nome), ...marcasSemLogo];
 
 /* Números da capa: o primeiro fica do lado esquerdo, os outros do lado direito.
    valor: número que o contador anima (ou texto, se for placeholder) */
@@ -853,9 +907,10 @@ chip.setAttribute("aria-label", `Assistir meu melhor conteúdo: ${top1.numero} $
 $("#chip-capa-num").textContent = top1.numero;
 $("#chip-capa-rot").textContent = top1.rotulo;
 
-/* Faixa gigante de marcas (duas cópias para o movimento contínuo) */
-const listaMarcas = marcas.map((m) => `<li>${esc(m)}<svg aria-hidden="true"><use href="#brilho"/></svg></li>`).join("");
-$("#faixa-trilho").innerHTML = `<ul>${listaMarcas}</ul><ul aria-hidden="true">${listaMarcas}</ul>`;
+/* Faixa de logos (duas cópias para o movimento contínuo) */
+const listaLogos = (comAlt) => logos.map((l) =>
+  `<li><img src="imagens/marcas/${esc(l.arquivo)}" alt="${comAlt ? esc(l.nome) : ""}" loading="lazy" decoding="async"></li>`).join("");
+$("#faixa-trilho").innerHTML = `<ul>${listaLogos(true)}</ul><ul aria-hidden="true">${listaLogos(false)}</ul>`;
 
 /* Destaques */
 $("#reels").innerHTML = destaques.map((d) => `
