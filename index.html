@@ -923,7 +923,7 @@ $("#chip-capa-rot").textContent = top1.rotulo;
 
 /* Faixa de logos (duas cópias para o movimento contínuo) */
 const listaLogos = (comAlt) => logos.map((l) =>
-  `<li><img src="imagens/marcas/${esc(l.arquivo)}" alt="${comAlt ? esc(l.nome) : ""}" loading="lazy" decoding="async"></li>`).join("");
+  `<li><img src="imagens/marcas/${esc(l.arquivo)}" alt="${comAlt ? esc(l.nome) : ""}" decoding="async"></li>`).join("");
 $("#faixa-trilho").innerHTML = `<ul>${listaLogos(true)}</ul><ul aria-hidden="true">${listaLogos(false)}</ul>`;
 
 /* Destaques */
