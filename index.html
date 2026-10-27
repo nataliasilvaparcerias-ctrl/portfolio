@@ -219,6 +219,30 @@ section[id]{scroll-margin-top:90px}
 .servico p{font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#f2e4d6;margin:0}
 .painel[hidden]{display:none}
 
+/* ============ PROJETOS (Diário da Noiva e Let's Fit) ============ */
+.projetos-grade{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.projeto{border-radius:var(--raio-g);padding:14px;display:grid;grid-template-columns:.85fr 1fr;gap:clamp(14px,2vw,24px);align-items:stretch}
+.projeto--noiva{background:var(--vinho);color:var(--nude-claro)}
+.projeto--fit{background:var(--nude);color:var(--tinta)}
+.projeto .midia{border-radius:var(--raio-m);min-height:300px;height:100%}
+.projeto-texto{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:clamp(8px,1.6vw,18px) clamp(4px,1vw,10px) clamp(8px,1.6vw,18px) 0}
+.projeto .rotulo{opacity:.85}
+.projeto h3{font-size:clamp(2.2rem,3.6vw,3rem);text-transform:uppercase}
+.projeto h3 em{font-style:italic;text-transform:none}
+.projeto--noiva h3{color:var(--marfim)}
+.projeto--fit h3{color:var(--vinho)}
+.projeto p{font-family:var(--mono);font-size:.8rem;line-height:1.7;margin:0}
+.projeto--noiva p{color:#f0e2d4}
+.projeto--fit p{color:var(--tinta-suave)}
+.contagem{display:inline-flex;align-items:center;gap:10px;background:var(--marfim);color:var(--vinho);border-radius:14px;padding:8px 14px 8px 8px}
+.contagem b{display:grid;place-items:center;min-width:44px;height:44px;padding:0 8px;border-radius:10px;background:var(--vinho);color:var(--marfim);font-family:var(--display);font-weight:400;font-size:1.8rem;line-height:1}
+.contagem span{font-family:var(--ui);font-weight:600;font-size:.85rem;line-height:1.2}
+.contagem small{display:block;font-weight:400;font-size:.72rem;color:var(--tinta-suave)}
+.projeto .botao{margin-top:auto}
+.projeto--fit .contagem{background:var(--vinho);color:var(--nude-claro)}
+.projeto--fit .contagem b{background:var(--nude-claro);color:var(--vinho)}
+.projeto--fit .contagem small{color:var(--nude)}
+
 /* ============ NÚMEROS E DEPOIMENTOS ============ */
 .numeros-grade{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-bottom:16px}
 .perfil{background:var(--vinho);border-radius:var(--raio-g);padding:14px 14px 18px;display:flex;flex-direction:column;gap:14px}
@@ -322,6 +346,7 @@ section[id]{scroll-margin-top:90px}
   .sobre-grade,.numeros-grade,.contato-cartao{grid-template-columns:1fr}
   .sobre-foto{margin-inline:auto}
   .reels{grid-template-columns:1fr;max-width:380px;margin-inline:auto}
+  .projetos-grade{grid-template-columns:1fr}
   .servicos-grade{grid-template-columns:repeat(2,1fr)}
   .mosaico{grid-template-columns:repeat(3,1fr)}
 }
@@ -340,8 +365,11 @@ section[id]{scroll-margin-top:90px}
   .perfil-botoes{grid-template-columns:1fr}
   .canal{flex-direction:column;align-items:flex-start;gap:2px}
   .canal span{text-align:left}
-  .abas{display:flex;width:100%}
-  .aba{flex:1;padding:12px 10px}
+  .abas{display:flex;width:100%;border-radius:22px}
+  .aba{flex:1 1 30%;padding:11px 8px;font-size:.8rem;border-radius:18px}
+  .projeto{grid-template-columns:1fr}
+  .projeto .midia{min-height:0;aspect-ratio:4/3}
+  .projeto-texto{padding:6px 8px 10px}
   .barra-texto small{display:none}
   .rodape-barra{border-radius:var(--raio-m)}
 }
@@ -398,6 +426,7 @@ section[id]{scroll-margin-top:90px}
       <ul>
         <li><a href="#sobre"><b>Sobre</b><small>quem sou eu</small></a></li>
         <li><a href="#destaques"><b>Destaques</b><small>melhores conteúdos</small></a></li>
+        <li><a href="#projetos"><b>Projetos</b><small>noiva e Let's Fit</small></a></li>
         <li><a href="#trabalhos"><b>Trabalhos</b><small>por nicho</small></a></li>
         <li><a href="#servicos"><b>Serviços</b><small>UGC e influência</small></a></li>
         <li><a href="#numeros"><b>Números</b><small>e depoimentos</small></a></li>
@@ -520,6 +549,47 @@ section[id]{scroll-margin-top:90px}
     </div>
   </section>
 
+  <!-- ============ MEUS PROJETOS ============ -->
+  <section class="secao" id="projetos" aria-labelledby="titulo-projetos" style="padding-top:0">
+    <div class="container">
+      <div class="cabeca revelar">
+        <div>
+          <span class="rotulo">Além do UGC</span>
+          <h2 class="titulo" id="titulo-projetos">Meus <em>projetos</em></h2>
+        </div>
+        <p class="mono">Dois pedaços da minha vida que viram conteúdo e podem levar a sua marca junto.</p>
+      </div>
+      <div class="projetos-grade">
+        <article class="projeto projeto--noiva revelar">
+          <!-- FOTO DO DIÁRIO DA NOIVA: troque o div abaixo por
+               <div class="midia"><img src="imagens/diario-da-noiva.jpg" alt="Natalia e Diogo juntos" loading="lazy"></div> -->
+          <div class="midia" role="img" aria-label="Espaço para foto da Natalia com o Diogo"><span class="legenda-midia">foto do casal 4:5</span></div>
+          <div class="projeto-texto">
+            <span class="rotulo">Quadro no meu Instagram</span>
+            <h3>Diário <em>da</em> Noiva</h3>
+            <p>Eu me caso em março de 2027 com o Diogo, e divido cada etapa dos preparativos com quem me acompanha. Vestido, beleza, decoração, festa e a vida a dois, tudo com a mesma conversa de amiga.</p>
+            <div class="contagem" aria-live="polite"><b id="meses-casamento">0</b><span id="texto-casamento">meses para o sim<small>casamento em março de 2027</small></span></div>
+            <a href="#servicos" class="botao botao--marfim" data-aba="aba-noiva">Quero aparecer no Diário</a>
+          </div>
+        </article>
+
+        <article class="projeto projeto--fit revelar">
+          <!-- FOTO DA LET'S FIT: troque o div abaixo por
+               <div class="midia"><img src="imagens/lets-fit.jpg" alt="Marmitas da Let's Fit" loading="lazy"></div> -->
+          <div class="midia" role="img" aria-label="Espaço para foto das marmitas da Let's Fit"><span class="legenda-midia">foto das marmitas 4:5</span></div>
+          <div class="projeto-texto">
+            <span class="rotulo">Minha marmitaria</span>
+            <h3>Let's <em>Fit</em></h3>
+            <p>Além de creator, sou empreendedora: tenho a Let's Fit, minha marmitaria fitness. Eu vivo a rotina de alimentação saudável na prática, e isso dá verdade aos conteúdos de comida, treino e bem-estar.</p>
+            <div class="contagem"><b>✦</b><span>marmitaria fitness<small>comida, treino e bem-estar</small></span></div>
+            <!-- LINK DA LET'S FIT: troque o "#" pelo Instagram ou site da marmitaria -->
+            <a href="#" class="botao botao--vinho" id="link-letsfit">Conhecer a Let's Fit</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 4. TRABALHOS POR NICHO ============ -->
   <section class="secao trabalhos" id="trabalhos" aria-labelledby="titulo-trabalhos">
     <div class="container">
@@ -556,6 +626,7 @@ section[id]{scroll-margin-top:90px}
       <div class="abas" role="tablist" aria-label="Tipo de serviço">
         <button class="aba" role="tab" id="aba-ugc" aria-selected="true" aria-controls="painel-ugc">UGC para a marca</button>
         <button class="aba" role="tab" id="aba-infl" aria-selected="false" aria-controls="painel-infl" tabindex="-1">Influenciadora</button>
+        <button class="aba" role="tab" id="aba-noiva" aria-selected="false" aria-controls="painel-noiva" tabindex="-1">Diário da Noiva</button>
       </div>
       <div class="painel" id="painel-ugc" role="tabpanel" aria-labelledby="aba-ugc">
         <p class="painel-intro">Eu crio, você publica. Conteúdo com direitos de uso para o perfil, site e anúncios da sua marca.</p>
@@ -564,6 +635,10 @@ section[id]{scroll-margin-top:90px}
       <div class="painel" id="painel-infl" role="tabpanel" aria-labelledby="aba-infl" hidden>
         <p class="painel-intro" id="intro-infl"></p>
         <ul class="servicos-grade" id="grade-infl"></ul>
+      </div>
+      <div class="painel" id="painel-noiva" role="tabpanel" aria-labelledby="aba-noiva" hidden>
+        <p class="painel-intro">Sua marca dentro da história real de um casamento. Ideal para vestidos, beleza, joias, decoração, buffet, casa, viagem e lua de mel.</p>
+        <ul class="servicos-grade" id="grade-noiva"></ul>
       </div>
     </div>
   </section>
@@ -817,7 +892,7 @@ const destaques = [
 ];
 
 /* Nichos dos filtros (o botão "todos" é criado automaticamente) */
-const nichos = ["beleza", "skincare", "moda", "comida", "casa e decoração", "fitness", "pet", "tech"];
+const nichos = ["beleza", "skincare", "moda", "comida", "casa e decoração", "fitness", "casal", "pet", "tech"];
 
 /* Trabalhos da galeria
    nicho: igual a um dos nomes da lista "nichos"
@@ -833,10 +908,15 @@ const trabalhos = [
   { nicho: "moda",             marca: "VB Camisetas",      formato: "Fotos do produto",   imagem: "", alto: false, link: "" },
   { nicho: "comida",           marca: "Coca-Cola",         formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
   { nicho: "comida",           marca: "Assaí Atacadista",  formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
+  { nicho: "comida",           marca: "Let's Fit",         formato: "Minha marmitaria fitness", imagem: "", alto: true, link: "" },
   { nicho: "casa e decoração", marca: "Karsten",           formato: "Unboxing",           imagem: "", alto: true,  link: "" },
   { nicho: "casa e decoração", marca: "Ypê",               formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
   { nicho: "fitness",          marca: "Nitro Tech",        formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
   { nicho: "fitness",          marca: "Marca 01",          formato: "Corte para anúncio", imagem: "", alto: true,  link: "" }, /* PLACEHOLDER */
+  { nicho: "fitness",          marca: "Let's Fit",         formato: "Rotina fitness e marmitas", imagem: "", alto: false, link: "" },
+  { nicho: "casal",            marca: "Diário da Noiva",   formato: "Vídeo em casal com o Diogo", imagem: "", alto: true, link: "" },
+  { nicho: "casal",            marca: "Marca 04",          formato: "Publi em casal",     imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
+  { nicho: "casal",            marca: "Marca 05",          formato: "Vídeo UGC em casal", imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
   { nicho: "pet",              marca: "Marca 02",          formato: "Vídeo UGC",          imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
   { nicho: "pet",              marca: "Marca 03",          formato: "Unboxing",           imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
   { nicho: "tech",             marca: "Gocase",            formato: "Unboxing",           imagem: "", alto: false, link: "" },
@@ -863,6 +943,19 @@ const servicosInfluenciadora = [
   { titulo: "Lançamento",            descricao: "Campanha completa para lançar um produto: antes, durante e depois." },
   { titulo: "Embaixadora da marca",  descricao: "Parceria de longo prazo com presença constante no meu perfil." }
 ];
+
+/* Diário da Noiva (pacotes para marcas aparecerem no meu quadro de casamento) */
+const servicosNoiva = [
+  { titulo: "Fornecedora oficial",   descricao: "Sua marca entra na história dos preparativos como escolha minha para o grande dia." },
+  { titulo: "Episódio patrocinado",  descricao: "Um episódio do Diário da Noiva dedicado ao seu produto ou serviço." },
+  { titulo: "Beleza da noiva",       descricao: "Cabelo, pele, unhas e maquiagem nos testes e no dia do casamento." },
+  { titulo: "Conteúdo em casal",     descricao: "Vídeos com o Diogo para casa, viagem, lua de mel e vida a dois." },
+  { titulo: "Contagem regressiva",   descricao: "Presença nos posts e stories da reta final até o sim, em março de 2027." },
+  { titulo: "Cobertura do grande dia", descricao: "Sua marca nos bastidores e nos conteúdos do casamento." }
+];
+
+/* Data do casamento: troque o dia (0 = ainda sem dia definido, conta só os meses) */
+const CASAMENTO = { ano: 2027, mes: 3, dia: 0 };
 
 /* Métricas com contador (cartão de perfil na seção Números) */
 const metricas = [
@@ -982,7 +1075,26 @@ const cardsServico = (lista) => lista.map((s, i) => `
   </article></li>`).join("");
 $("#grade-ugc").innerHTML = cardsServico(servicosUGC);
 $("#grade-infl").innerHTML = cardsServico(servicosInfluenciadora);
+$("#grade-noiva").innerHTML = cardsServico(servicosNoiva);
 $("#intro-infl").textContent = `Sua marca no meu perfil @natallia_silvaa, para ${seguidores} que confiam nas minhas dicas.`;
+
+/* Contagem até o casamento */
+(function () {
+  const hoje = new Date();
+  const alvo = new Date(CASAMENTO.ano, CASAMENTO.mes - 1, CASAMENTO.dia || 1);
+  const num = $("#meses-casamento"), txt = $("#texto-casamento");
+  const nomeMes = alvo.toLocaleDateString("pt-BR", { month: "long" });
+  if (alvo <= hoje) { num.textContent = "♥"; txt.innerHTML = `recém-casada!<small>casamos em ${nomeMes} de ${CASAMENTO.ano}</small>`; return; }
+  if (CASAMENTO.dia) {
+    const dias = Math.ceil((alvo - hoje) / 86400000);
+    num.textContent = dias;
+    txt.innerHTML = `${dias === 1 ? "dia" : "dias"} para o sim<small>casamento em ${alvo.toLocaleDateString("pt-BR")}</small>`;
+  } else {
+    const meses = (alvo.getFullYear() - hoje.getFullYear()) * 12 + (alvo.getMonth() - hoje.getMonth());
+    num.textContent = meses;
+    txt.innerHTML = `${meses === 1 ? "mês" : "meses"} para o sim<small>casamento em ${nomeMes} de ${CASAMENTO.ano}</small>`;
+  }
+})();
 
 const abas = [...document.querySelectorAll(".aba")];
 function ativarAba(aba, focar) {
@@ -994,6 +1106,10 @@ function ativarAba(aba, focar) {
   });
   if (focar) aba.focus();
 }
+/* Botões que levam direto para uma aba de serviço (ex.: "Quero aparecer no Diário") */
+document.querySelectorAll("[data-aba]").forEach((link) => {
+  link.addEventListener("click", () => ativarAba(document.getElementById(link.dataset.aba)));
+});
 abas.forEach((aba, i) => {
   aba.addEventListener("click", () => ativarAba(aba));
   aba.addEventListener("keydown", (e) => {
