@@ -189,10 +189,16 @@ section[id]{scroll-margin-top:90px}
 .trabalho{position:relative;border-radius:20px;overflow:hidden;animation:surgir .45s ease both}
 .trabalho.alto{grid-row:span 2}
 .trabalho .midia{position:absolute;inset:0}
+/* A capa do YouTube Shorts vem com faixas escuras nas laterais: ampliamos para mostrar só o vídeo vertical */
+.trabalho .midia img.capa-yt{left:50%;top:50%;right:auto;bottom:auto;width:262%;height:auto;min-height:100%;object-fit:cover;transform:translate(-50%,-50%);transition:transform .5s ease}
+.trabalho:hover .midia img.capa-yt{transform:translate(-50%,-50%) scale(1.05)}
+.play-mini{position:absolute;top:10px;right:10px;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(251,247,238,.92);color:var(--vinho);display:grid;place-items:center;transition:transform .25s ease}
+.play-mini svg{width:14px;height:14px;margin-left:2px}
+.trabalho:hover .play-mini{transform:scale(1.1)}
 .trabalho .info{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(94,20,20,.92);color:var(--nude-claro);border-radius:14px;padding:9px 12px}
 .trabalho .info b{display:block;font-weight:600;font-size:.9rem;line-height:1.2}
 .trabalho .info small{display:block;font-size:.68rem;opacity:.8}
-.trabalho .legenda-midia{position:absolute;top:10px;left:10px}
+.trabalho .legenda-midia{margin-bottom:56px}
 .trabalho a{position:absolute;inset:0;z-index:2}
 .trabalho[hidden]{display:none}
 .vazio{grid-column:1/-1;font-family:var(--mono);font-size:.85rem;color:var(--tinta-suave);text-align:center;padding:40px 0}
@@ -598,7 +604,7 @@ section[id]{scroll-margin-top:90px}
           <span class="rotulo">Trabalhos por nicho</span>
           <h2 class="titulo" id="titulo-trabalhos">Meu <em>portfólio</em></h2>
         </div>
-        <p class="mono">Beleza, skincare, moda, comida, casa, fitness, pet e tech. Escolha um nicho para ver os trabalhos.</p>
+        <p class="mono">Beleza, skincare, perfumes, moda, receitas, fitness, casa, casal, pet e apps. Escolha um nicho e clique no vídeo para assistir.</p>
       </div>
       <div class="cartao revelar">
         <div class="barra">
@@ -847,7 +853,8 @@ const logos = [
 const marcasSemLogo = [
   "BotoHarmony", "Bebecê", "Top Store Joias", "Labotrat", "Nitro Tech",
   "Neosaldina", "Estomazil", "Engov", "Gino Colesten", "VB Camisetas",
-  "Tely Giga", "Gocase", "GEEP"
+  "Tely Giga", "Gocase", "GEEP",
+  "Entre Notas Perfumaria", "MuscleTech", "ADA", "Pozze", "TikTok Shop", "Banda Viviane Bitaraes"
 ];
 
 /* Todas as marcas (o número de "marcas atendidas" usa o total desta lista) */
@@ -892,35 +899,39 @@ const destaques = [
 ];
 
 /* Nichos dos filtros (o botão "todos" é criado automaticamente) */
-const nichos = ["beleza", "skincare", "moda", "comida", "casa e decoração", "fitness", "casal", "pet", "tech"];
+const nichos = ["beleza", "skincare", "perfumes", "moda", "receitas", "fitness", "casa e decoração", "casal", "pet", "apps e tech"];
 
-/* Trabalhos da galeria
+/* Trabalhos da galeria (vídeos do YouTube Shorts)
    nicho: igual a um dos nomes da lista "nichos"
-   imagem: foto na pasta "imagens" (deixe "" para usar o degradê)
+   video: link do Shorts (a capa é puxada automaticamente do YouTube)
+   imagem: opcional, foto própria na pasta "imagens" para usar no lugar da capa do YouTube
    alto: true deixa o card com o dobro da altura no mosaico
-   link: opcional */
+   Para adicionar um vídeo, copie uma linha, troque os dados e salve. */
 const trabalhos = [
-  { nicho: "beleza",           marca: "Elseve",            formato: "Vídeo UGC",          imagem: "", alto: true,  link: "" },
-  { nicho: "beleza",           marca: "Beleza Brasileira", formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "skincare",         marca: "Garnier",           formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "skincare",         marca: "Dove",              formato: "Fotos do produto",   imagem: "", alto: true,  link: "" },
-  { nicho: "moda",             marca: "Bebecê",            formato: "Vídeo UGC",          imagem: "", alto: true,  link: "" },
-  { nicho: "moda",             marca: "VB Camisetas",      formato: "Fotos do produto",   imagem: "", alto: false, link: "" },
-  { nicho: "comida",           marca: "Coca-Cola",         formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "comida",           marca: "Assaí Atacadista",  formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "comida",           marca: "Let's Fit",         formato: "Minha marmitaria fitness", imagem: "", alto: true, link: "" },
-  { nicho: "casa e decoração", marca: "Karsten",           formato: "Unboxing",           imagem: "", alto: true,  link: "" },
-  { nicho: "casa e decoração", marca: "Ypê",               formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "fitness",          marca: "Nitro Tech",        formato: "Vídeo UGC",          imagem: "", alto: false, link: "" },
-  { nicho: "fitness",          marca: "Marca 01",          formato: "Corte para anúncio", imagem: "", alto: true,  link: "" }, /* PLACEHOLDER */
-  { nicho: "fitness",          marca: "Let's Fit",         formato: "Rotina fitness e marmitas", imagem: "", alto: false, link: "" },
-  { nicho: "casal",            marca: "Diário da Noiva",   formato: "Vídeo em casal com o Diogo", imagem: "", alto: true, link: "" },
-  { nicho: "casal",            marca: "Marca 04",          formato: "Publi em casal",     imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
-  { nicho: "casal",            marca: "Marca 05",          formato: "Vídeo UGC em casal", imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
-  { nicho: "pet",              marca: "Marca 02",          formato: "Vídeo UGC",          imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
-  { nicho: "pet",              marca: "Marca 03",          formato: "Unboxing",           imagem: "", alto: false, link: "" }, /* PLACEHOLDER */
-  { nicho: "tech",             marca: "Gocase",            formato: "Unboxing",           imagem: "", alto: false, link: "" },
-  { nicho: "tech",             marca: "Tely Giga",         formato: "Vídeo UGC",          imagem: "", alto: false, link: "" }
+  { nicho: "beleza",           marca: "Forever Liss",      formato: "Cabelo",               video: "https://youtube.com/shorts/m4rVUg_cWus", alto: true },
+  { nicho: "beleza",           marca: "Elseve",            formato: "Cabelo",               video: "https://youtube.com/shorts/i-dSF5TjLY0", alto: false },
+  { nicho: "beleza",           marca: "Amobeleza",         formato: "Make",                 video: "https://youtube.com/shorts/-zzrAgH5b4s", alto: false },
+  { nicho: "beleza",           marca: "Petrizzi",          formato: "Make",                 video: "https://youtube.com/shorts/AvTJPjMU2z4", alto: true },
+  { nicho: "beleza",           marca: "Prohall",           formato: "Cabelo",               video: "https://youtube.com/shorts/0xy0AzYmnE0", alto: false },
+  { nicho: "beleza",           marca: "Prohall",           formato: "Penteado",             video: "https://youtube.com/shorts/BBtqXyeXbdo", alto: false },
+  { nicho: "beleza",           marca: "Prohall",           formato: "Perfume para cabelo",  video: "https://youtube.com/shorts/MzCvREV3fNs", alto: true },
+  { nicho: "skincare",         marca: "Principia",         formato: "Skincare",             video: "https://youtube.com/shorts/_8guf-70vyc", alto: false },
+  { nicho: "skincare",         marca: "Petrizzi",          formato: "Skincare",             video: "https://youtube.com/shorts/EEqhsLfExxM", alto: false },
+  { nicho: "perfumes",         marca: "Entre Notas Perfumaria", formato: "Perfume",         video: "https://youtube.com/shorts/7IbWaT88pH8", alto: true },
+  { nicho: "perfumes",         marca: "Amobeleza",         formato: "Perfume",              video: "https://youtube.com/shorts/FEkk7spLDmQ", alto: false },
+  { nicho: "receitas",         marca: "Dymatize",          formato: "Receita fit",          video: "https://youtube.com/shorts/g3Z7Cq9AiH8", alto: false },
+  { nicho: "receitas",         marca: "MuscleTech",        formato: "Receita fit",          video: "https://youtube.com/shorts/Nzmhl75VRqE", alto: true },
+  { nicho: "receitas",         marca: "O Abelheiro",       formato: "Receita com mel",      video: "https://youtube.com/shorts/7AHplck9Lco", alto: false },
+  { nicho: "apps e tech",      marca: "Mercado Livre",     formato: "App",                  video: "https://youtube.com/shorts/rhm7NmzDT_U", alto: false },
+  { nicho: "casa e decoração", marca: "Pure Shower",       formato: "Casa",                 video: "https://youtube.com/shorts/x4qohsSSLrA", alto: true },
+  { nicho: "casa e decoração", marca: "Comfort",           formato: "Casa",                 video: "https://youtube.com/shorts/rMFJfSvxPdw", alto: false },
+  { nicho: "casa e decoração", marca: "Assaí Atacadista",  formato: "Compras para casa",    video: "https://youtube.com/shorts/kjGjJQRhigg", alto: false },
+  { nicho: "casa e decoração", marca: "Karsten",           formato: "Decoração",            video: "https://youtube.com/shorts/P-torYsnmUs", alto: true },
+  { nicho: "fitness",          marca: "ADA",               formato: "Suplementos",          video: "https://youtube.com/shorts/8CDiuUDc-kw", alto: false },
+  { nicho: "moda",             marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/QanHElo590k", alto: false },
+  { nicho: "pet",              marca: "TikTok Shop",       formato: "Pet",                  video: "https://youtube.com/shorts/TTtznpXcSF0", alto: true },
+  { nicho: "casal",            marca: "Seculus",           formato: "Relógios em casal",    video: "https://youtube.com/shorts/jdZgsmduo6g", alto: false },
+  { nicho: "casal",            marca: "Banda Viviane Bitaraes", formato: "Diário da Noiva", video: "https://youtube.com/shorts/GOYAX507NQE", alto: false }
 ];
 
 /* Serviços UGC (conteúdo que a marca publica nos canais dela) */
@@ -1042,12 +1053,32 @@ $("#reels").innerHTML = destaques.map((d) => `
 
 /* Trabalhos em mosaico + filtros */
 const mosaico = $("#mosaico");
-mosaico.innerHTML = trabalhos.map((t) => `
+const idYoutube = (url) => (String(url || "").match(/(?:shorts\/|v=|youtu\.be\/)([\w-]{11})/) || [])[1];
+mosaico.innerHTML = trabalhos.map((t) => {
+  const id = idYoutube(t.video);
+  const capa = t.imagem
+    ? `<img src="${esc(t.imagem)}" alt="" loading="lazy">`
+    : id ? `<img class="capa-yt" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">` : `<span class="legenda-midia">capa 9:16</span>`;
+  return `
   <li class="trabalho${t.alto ? " alto" : ""}" data-nicho="${esc(t.nicho)}">
-    <div class="midia">${t.imagem ? `<img src="${esc(t.imagem)}" alt="${esc(t.formato)} para ${esc(t.marca)}" loading="lazy">` : `<span class="legenda-midia">foto ${t.alto ? "4:5" : "1:1"}</span>`}</div>
+    <div class="midia">${capa}</div>
+    ${t.video ? `<span class="play-mini" aria-hidden="true"><svg><use href="#play"/></svg></span>` : ""}
     <div class="info"><b>${esc(t.marca)}</b><small>${esc(t.nicho)} · ${esc(t.formato)}</small></div>
-    ${t.link ? `<a href="${esc(t.link)}" ${externo(t.link)} aria-label="Ver trabalho para ${esc(t.marca)}"></a>` : ""}
-  </li>`).join("") + `<li class="vazio" hidden>Em breve, trabalhos deste nicho por aqui.</li>`;
+    ${t.video ? `<a href="${esc(t.video)}" ${externo(t.video)} aria-label="Assistir vídeo para ${esc(t.marca)}: ${esc(t.formato)}"></a>` : ""}
+  </li>`;
+}).join("") + `<li class="vazio" hidden>Em breve, trabalhos deste nicho por aqui.</li>`;
+
+/* Quando o YouTube ainda não gerou a capa do vídeo, ele devolve uma imagem cinza pequena.
+   Nesse caso tiramos a imagem e fica o degradê com o aviso. */
+mosaico.querySelectorAll("img.capa-yt").forEach((img) => {
+  const conferir = () => {
+    if (img.naturalWidth && img.naturalWidth <= 120) {
+      img.insertAdjacentHTML("afterend", '<span class="legenda-midia">assistir no YouTube</span>');
+      img.remove();
+    }
+  };
+  if (img.complete) conferir(); else img.addEventListener("load", conferir);
+});
 
 const filtros = $("#filtros");
 filtros.innerHTML = ["todos", ...nichos].map((n, i) =>
