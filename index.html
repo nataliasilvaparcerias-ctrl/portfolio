@@ -597,8 +597,8 @@ section[id]{scroll-margin-top:90px}
             <h3>Let's <em>Fit</em></h3>
             <p>Além de creator, sou empreendedora: tenho a Let's Fit, minha marmitaria fitness. Eu vivo a rotina de alimentação saudável na prática, e isso dá verdade aos conteúdos de comida, treino e bem-estar.</p>
             <div class="contagem"><b>✦</b><span>marmitaria fitness<small>comida, treino e bem-estar</small></span></div>
-            <!-- LINK DA LET'S FIT: troque o "#" pelo Instagram ou site da marmitaria -->
-            <a href="#" class="botao botao--vinho" id="link-letsfit">Conhecer a Let's Fit</a>
+            <!-- LINK DA LET'S FIT: hoje leva ao vídeo das marmitas; troque pelo Instagram da marmitaria se preferir -->
+            <a href="https://youtube.com/shorts/rmeK0ichc38" target="_blank" rel="noopener" class="botao botao--vinho" id="link-letsfit">Conhecer a Let's Fit</a>
           </div>
         </article>
       </div>
@@ -861,9 +861,10 @@ const logos = [
    Quando tiver o logo, mova a marca para a lista "logos" acima. */
 const marcasSemLogo = [
   "BotoHarmony", "Bebecê", "Top Store Joias", "Labotrat", "Nitro Tech",
-  "Neosaldina", "Estomazil", "Engov", "Gino Colesten", "VB Camisetas",
+  "Neosaldina", "Estomazil", "Engov", "Gino-Canesten", "VB Camisetas",
   "Tely Giga", "Gocase", "GEEP",
-  "Entre Notas Perfumaria", "MuscleTech", "ADA", "Pozze", "TikTok Shop", "Banda Viviane Bitaraes"
+  "Entre Notas Perfumaria", "MuscleTech", "ADA", "Pozze", "TikTok Shop", "Banda Viviane Bitaraes",
+  "Truwell", "Neon", "Cereja Rosa", "Domidona Shoes", "Atroveran", "Alastra", "Floral Lab"
 ];
 
 /* Todas as marcas (o número de "marcas atendidas" usa o total desta lista) */
@@ -908,7 +909,7 @@ const destaques = [
 ];
 
 /* Nichos dos filtros (o botão "todos" é criado automaticamente) */
-const nichos = ["beleza", "skincare", "perfumes", "moda", "receitas", "fitness", "casa e decoração", "casal", "pet", "apps e tech"];
+const nichos = ["beleza", "skincare", "perfumes", "moda", "receitas", "fitness", "casa e decoração", "casal", "diário da noiva", "saúde e bem-estar", "pet", "apps e tech"];
 
 /* Trabalhos da galeria (vídeos do YouTube Shorts)
    nicho: igual a um dos nomes da lista "nichos"
@@ -916,30 +917,68 @@ const nichos = ["beleza", "skincare", "perfumes", "moda", "receitas", "fitness",
    imagem: opcional, foto própria na pasta "imagens" para usar no lugar da capa do YouTube
    Para adicionar um vídeo, copie uma linha, troque os dados e salve. */
 const trabalhos = [
-  { nicho: "beleza",           marca: "Forever Liss",      formato: "Cabelo",               video: "https://youtube.com/shorts/m4rVUg_cWus" },
-  { nicho: "beleza",           marca: "Elseve",            formato: "Cabelo",               video: "https://youtube.com/shorts/i-dSF5TjLY0" },
-  { nicho: "beleza",           marca: "Amobeleza",         formato: "Make",                 video: "https://youtube.com/shorts/-zzrAgH5b4s" },
-  { nicho: "beleza",           marca: "Petrizzi",          formato: "Make",                 video: "https://youtube.com/shorts/AvTJPjMU2z4" },
-  { nicho: "beleza",           marca: "Prohall",           formato: "Cabelo",               video: "https://youtube.com/shorts/0xy0AzYmnE0" },
-  { nicho: "beleza",           marca: "Prohall",           formato: "Penteado",             video: "https://youtube.com/shorts/BBtqXyeXbdo" },
-  { nicho: "beleza",           marca: "Prohall",           formato: "Perfume para cabelo",  video: "https://youtube.com/shorts/MzCvREV3fNs" },
-  { nicho: "skincare",         marca: "Principia",         formato: "Skincare",             video: "https://youtube.com/shorts/_8guf-70vyc" },
-  { nicho: "skincare",         marca: "Petrizzi",          formato: "Skincare",             video: "https://youtube.com/shorts/EEqhsLfExxM" },
-  { nicho: "perfumes",         marca: "Entre Notas Perfumaria", formato: "Perfume",         video: "https://youtube.com/shorts/7IbWaT88pH8" },
-  { nicho: "perfumes",         marca: "Amobeleza",         formato: "Perfume",              video: "https://youtube.com/shorts/FEkk7spLDmQ" },
-  { nicho: "receitas",         marca: "Dymatize",          formato: "Receita fit",          video: "https://youtube.com/shorts/g3Z7Cq9AiH8" },
-  { nicho: "receitas",         marca: "MuscleTech",        formato: "Receita fit",          video: "https://youtube.com/shorts/Nzmhl75VRqE" },
-  { nicho: "receitas",         marca: "O Abelheiro",       formato: "Receita com mel",      video: "https://youtube.com/shorts/7AHplck9Lco" },
-  { nicho: "apps e tech",      marca: "Mercado Livre",     formato: "App",                  video: "https://youtube.com/shorts/rhm7NmzDT_U" },
-  { nicho: "casa e decoração", marca: "Pure Shower",       formato: "Casa",                 video: "https://youtube.com/shorts/x4qohsSSLrA" },
-  { nicho: "casa e decoração", marca: "Comfort",           formato: "Casa",                 video: "https://youtube.com/shorts/rMFJfSvxPdw" },
-  { nicho: "casa e decoração", marca: "Assaí Atacadista",  formato: "Compras para casa",    video: "https://youtube.com/shorts/kjGjJQRhigg" },
-  { nicho: "casa e decoração", marca: "Karsten",           formato: "Decoração",            video: "https://youtube.com/shorts/P-torYsnmUs" },
-  { nicho: "fitness",          marca: "ADA",               formato: "Suplementos",          video: "https://youtube.com/shorts/8CDiuUDc-kw" },
-  { nicho: "moda",             marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/QanHElo590k" },
-  { nicho: "pet",              marca: "TikTok Shop",       formato: "Pet",                  video: "https://youtube.com/shorts/TTtznpXcSF0" },
-  { nicho: "casal",            marca: "Seculus",           formato: "Relógios em casal",    video: "https://youtube.com/shorts/jdZgsmduo6g" },
-  { nicho: "casal",            marca: "Banda Viviane Bitaraes", formato: "Diário da Noiva", video: "https://youtube.com/shorts/GOYAX507NQE" }
+  /* Beleza */
+  { nicho: "beleza",            marca: "Forever Liss",      formato: "Cabelo",               video: "https://youtube.com/shorts/m4rVUg_cWus" },
+  { nicho: "beleza",            marca: "Elseve",            formato: "Cabelo",               video: "https://youtube.com/shorts/i-dSF5TjLY0" },
+  { nicho: "beleza",            marca: "Niely Gold",        formato: "Cabelo",               video: "https://youtube.com/shorts/i-COejsR-cY" },
+  { nicho: "beleza",            marca: "Prohall",           formato: "Cabelo",               video: "https://youtube.com/shorts/0xy0AzYmnE0" },
+  { nicho: "beleza",            marca: "Prohall",           formato: "Penteado",             video: "https://youtube.com/shorts/BBtqXyeXbdo" },
+  { nicho: "beleza",            marca: "Prohall",           formato: "Perfume para cabelo",  video: "https://youtube.com/shorts/MzCvREV3fNs" },
+  { nicho: "beleza",            marca: "Amobeleza",         formato: "Make",                 video: "https://youtube.com/shorts/-zzrAgH5b4s" },
+  { nicho: "beleza",            marca: "Petrizzi",          formato: "Make",                 video: "https://youtube.com/shorts/AvTJPjMU2z4" },
+  { nicho: "beleza",            marca: "Natura",            formato: "Beleza",               video: "https://youtube.com/shorts/YMcpeJZZgTk" },
+  { nicho: "beleza",            marca: "TikTok Shop",       formato: "Beleza",               video: "https://youtube.com/shorts/rgmvhzLlQwo" },
+  { nicho: "beleza",            marca: "Alastra",           formato: "Beleza",               video: "https://youtube.com/shorts/YfkYImDkJtU" }, /* CONFIRMAR o nicho */
+  { nicho: "beleza",            marca: "Black Friday",      formato: "Beleza",               video: "https://youtube.com/shorts/02Rj10J1pyw" },
+  { nicho: "beleza",            marca: "Black Friday",      formato: "Beleza",               video: "https://youtube.com/shorts/SeANXEuf-wc" },
+  /* Skincare */
+  { nicho: "skincare",          marca: "Principia",         formato: "Skincare",             video: "https://youtube.com/shorts/_8guf-70vyc" },
+  { nicho: "skincare",          marca: "Petrizzi",          formato: "Skincare",             video: "https://youtube.com/shorts/EEqhsLfExxM" },
+  { nicho: "skincare",          marca: "Eucerin",           formato: "Skincare",             video: "https://youtube.com/shorts/u3UW2vAa3uk" },
+  /* Perfumes */
+  { nicho: "perfumes",          marca: "Entre Notas Perfumaria", formato: "Perfume",         video: "https://youtube.com/shorts/7IbWaT88pH8" },
+  { nicho: "perfumes",          marca: "Amobeleza",         formato: "Perfume",              video: "https://youtube.com/shorts/FEkk7spLDmQ" },
+  /* Moda */
+  { nicho: "moda",              marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/QanHElo590k" },
+  { nicho: "moda",              marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/YLVZBqb1nt0" },
+  { nicho: "moda",              marca: "Top Store Joias",   formato: "Joias",                video: "https://youtube.com/shorts/boXwLDpGUlM" },
+  { nicho: "moda",              marca: "Flowfa",            formato: "Moda",                 video: "https://youtube.com/shorts/29d7OFdziBs" },
+  { nicho: "moda",              marca: "Cereja Rosa",       formato: "Moda",                 video: "https://youtube.com/shorts/LZmrOXFuevk" },
+  { nicho: "moda",              marca: "Domidona Shoes",    formato: "Calçados",             video: "https://youtube.com/shorts/RzGMQv6VJ4k" },
+  { nicho: "moda",              marca: "VB Camisetas",      formato: "Camisetas Let's Fit",  video: "https://youtube.com/shorts/XxG1ahoyAZ0" },
+  /* Receitas */
+  { nicho: "receitas",          marca: "Dymatize",          formato: "Receita fit",          video: "https://youtube.com/shorts/g3Z7Cq9AiH8" },
+  { nicho: "receitas",          marca: "MuscleTech",        formato: "Receita fit",          video: "https://youtube.com/shorts/Nzmhl75VRqE" },
+  { nicho: "receitas",          marca: "O Abelheiro",       formato: "Receita com mel",      video: "https://youtube.com/shorts/7AHplck9Lco" },
+  /* Fitness */
+  { nicho: "fitness",           marca: "ADA",               formato: "Suplementos",          video: "https://youtube.com/shorts/8CDiuUDc-kw" },
+  { nicho: "fitness",           marca: "MuscleTech",        formato: "Creatina",             video: "https://youtube.com/shorts/Chvj3vnRYn0" },
+  { nicho: "fitness",           marca: "Let's Fit",         formato: "Minhas marmitas fitness", video: "https://youtube.com/shorts/rmeK0ichc38" },
+  /* Casa e decoração */
+  { nicho: "casa e decoração",  marca: "Pure Shower",       formato: "Casa",                 video: "https://youtube.com/shorts/x4qohsSSLrA" },
+  { nicho: "casa e decoração",  marca: "Comfort",           formato: "Casa",                 video: "https://youtube.com/shorts/rMFJfSvxPdw" },
+  { nicho: "casa e decoração",  marca: "Ypê",               formato: "Casa",                 video: "https://youtube.com/shorts/3g669yVB9mM" },
+  { nicho: "casa e decoração",  marca: "Assaí Atacadista",  formato: "Compras para casa",    video: "https://youtube.com/shorts/kjGjJQRhigg" },
+  { nicho: "casa e decoração",  marca: "Karsten",           formato: "Decoração",            video: "https://youtube.com/shorts/P-torYsnmUs" },
+  /* Casal (com o Diogo) */
+  { nicho: "casal",             marca: "Seculus",           formato: "Relógios em casal",    video: "https://youtube.com/shorts/jdZgsmduo6g" },
+  { nicho: "casal",             marca: "Andorinha",         formato: "Em casal",             video: "https://youtube.com/shorts/sOlFAcWv42Q" },
+  { nicho: "casal",             marca: "Rotina de casal",   formato: "Com o Diogo",          video: "https://youtube.com/shorts/HGWCYeoKvHQ" },
+  { nicho: "casal",             marca: "Make em casal",     formato: "Com o Diogo",          video: "https://youtube.com/shorts/BgQietriqVg" },
+  /* Diário da Noiva */
+  { nicho: "diário da noiva",   marca: "Banda Viviane Bitaraes", formato: "A banda do casamento", video: "https://youtube.com/shorts/GOYAX507NQE" },
+  { nicho: "diário da noiva",   marca: "Floral Lab",        formato: "Eternizei meu buquê",  video: "https://youtube.com/shorts/RQt65rA_unk" },
+  { nicho: "diário da noiva",   marca: "Diário da Noiva",   formato: "O lugar",              video: "https://youtube.com/shorts/J6USZQp5Ubw" },
+  { nicho: "diário da noiva",   marca: "Diário da Noiva",   formato: "Lista de convidados",  video: "https://youtube.com/shorts/BtytVmFYhGM" },
+  /* Saúde e bem-estar */
+  { nicho: "saúde e bem-estar", marca: "Atroveran",         formato: "TikTok Shop",          video: "https://youtube.com/shorts/jK7mD3xqxLE" },
+  { nicho: "saúde e bem-estar", marca: "Gino-Canesten",     formato: "Saúde íntima",         video: "https://youtube.com/shorts/F2ON9GHykNs" },
+  /* Pet */
+  { nicho: "pet",               marca: "TikTok Shop",       formato: "Pet",                  video: "https://youtube.com/shorts/TTtznpXcSF0" },
+  /* Apps e tech */
+  { nicho: "apps e tech",       marca: "Mercado Livre",     formato: "App",                  video: "https://youtube.com/shorts/rhm7NmzDT_U" },
+  { nicho: "apps e tech",       marca: "Truwell",           formato: "App",                  video: "https://youtube.com/shorts/KxbHuIFtelg" },
+  { nicho: "apps e tech",       marca: "Neon",              formato: "App",                  video: "https://youtube.com/shorts/9jKM_TXE2r0" }
 ];
 
 /* Serviços UGC (conteúdo que a marca publica nos canais dela) */
