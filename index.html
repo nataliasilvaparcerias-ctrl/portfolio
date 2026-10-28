@@ -919,7 +919,7 @@ const numerosCapa = [
 const destaques = [
   {
     link: "https://www.instagram.com/reel/DQm_jo_Ecev/",
-    capa: "https://i.ytimg.com/vi/_8guf-70vyc/hqdefault.jpg",
+    capa: "imagens/capas/_8guf-70vyc.jpg",
     numero: "+19M",
     rotulo: "views no reels",
     titulo: "Principia",
@@ -927,7 +927,7 @@ const destaques = [
   },
   {
     link: "https://www.instagram.com/reel/DTbRX-oEcSJ/",
-    capa: "https://i.ytimg.com/vi/LZmrOXFuevk/hqdefault.jpg",
+    capa: "imagens/capas/LZmrOXFuevk.jpg",
     numero: "+1M",
     rotulo: "views no reels",
     titulo: "Cereja Rosa",
@@ -935,7 +935,7 @@ const destaques = [
   },
   {
     link: "https://youtube.com/shorts/u3UW2vAa3uk",  /* troque pelo link do reels no Instagram, se preferir */
-    capa: "https://i.ytimg.com/vi/u3UW2vAa3uk/hqdefault.jpg",
+    capa: "imagens/capas/u3UW2vAa3uk.jpg",
     numero: "+2M",                                  /* 2,9 milhões */
     rotulo: "views",
     titulo: "Eucerin",
@@ -948,7 +948,8 @@ const nichos = ["beleza", "skincare", "moda", "fitness e suplementos", "receitas
 
 /* Trabalhos da galeria (vídeos do YouTube Shorts)
    nicho: igual a um dos nomes da lista "nichos"
-   video: link do Shorts (a capa é puxada automaticamente do YouTube)
+   video: link do Shorts. A capa em alta qualidade fica em "imagens/capas/CODIGO_DO_VIDEO.jpg";
+          se ela não existir, o site usa a miniatura do YouTube (menor).
    imagem: opcional, foto própria na pasta "imagens" para usar no lugar da capa do YouTube
    Para adicionar um vídeo, copie uma linha, troque os dados e salve. */
 const trabalhos = [
@@ -1157,7 +1158,7 @@ const cardTrabalho = (t) => {
   const id = idYoutube(t.video);
   const capa = t.imagem
     ? `<img src="${esc(t.imagem)}" alt="" loading="lazy">`
-    : id ? `<img class="capa-yt" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">` : `<span class="legenda-midia">capa 9:16</span>`;
+    : id ? `<img src="imagens/capas/${id}.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.className='capa-yt';this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">` : `<span class="legenda-midia">capa 9:16</span>`;
   return `
   <li class="trabalho">
     <div class="midia">${capa}</div>
