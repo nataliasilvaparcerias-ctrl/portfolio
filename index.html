@@ -156,6 +156,10 @@ section[id]{scroll-margin-top:90px}
 .sobre-topo .polaroid .midia{aspect-ratio:1}
 .sobre-grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start;max-width:980px;margin-inline:auto}
 .manifesto{font-family:var(--mono);font-size:clamp(.95rem,1.4vw,1.08rem);line-height:1.6;text-transform:uppercase;letter-spacing:.02em;color:var(--tinta);margin-bottom:32px}
+.manifesto + .mono{margin-top:-14px}
+.frase-amiga{font-family:var(--display);font-style:italic;font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.1;color:var(--vinho);margin:0 0 34px}
+.sobre-sub{font-size:clamp(1.8rem,3vw,2.4rem);text-transform:uppercase;color:var(--vinho);margin:0 0 18px}
+.sobre-sub em{font-style:italic;text-transform:none}
 .sobre-foto{position:relative;max-width:360px}
 .sobre-foto .midia{aspect-ratio:4/5}
 .sobre-foto .laco{position:absolute;top:-28px;right:-26px;z-index:2;transform:rotate(14deg)}
@@ -510,8 +514,8 @@ section[id]{scroll-margin-top:90px}
   <section class="secao sobre" id="sobre" aria-labelledby="titulo-sobre">
     <div class="container">
       <div class="sobre-topo revelar">
-        <p class="script">Oi, eu sou a Natalia</p>
-        <h2 class="titulo" id="titulo-sobre">UGC creator, influenciadora <em>e a sua</em> amiga das dicas</h2>
+        <p class="script">Oi, eu sou a Natalia!</p>
+        <h2 class="titulo" id="titulo-sobre">UGC creator, influenciadora <em>e aquela amiga</em> que sempre tem uma boa dica</h2>
         <div class="polaroid">
           <span class="fita" aria-hidden="true" style="width:60px;height:20px;top:-9px"></span>
           <div class="midia"><img src="imagens/natalia-capa.jpg" alt="" width="918" height="1782" loading="lazy" style="object-position:50% 22%"></div>
@@ -520,7 +524,9 @@ section[id]{scroll-margin-top:90px}
 
       <div class="sobre-grade">
         <div class="revelar">
-          <p class="manifesto">Eu acredito que o conteúdo que vende é aquele que parece conversa de amiga.</p>
+          <p class="manifesto">Acredito que os conteúdos que mais conectam são aqueles que não parecem propaganda, mas uma conversa sincera entre amigas.</p>
+          <p class="mono">Por isso, transformo produtos em histórias reais, leves e envolventes, criando vídeos que despertam curiosidade, geram identificação e fazem as pessoas pensarem:</p>
+          <p class="frase-amiga">“Amiga, eu preciso disso!”</p>
           <div class="sobre-foto">
             <svg class="laco" aria-hidden="true"><use href="#laco"/></svg>
             <!-- FOTO DO SOBRE: para trocar, coloque a nova foto na pasta "imagens" e mude o src abaixo -->
@@ -530,8 +536,11 @@ section[id]{scroll-margin-top:90px}
           </div>
         </div>
         <div class="revelar">
-          <p class="mono">Sou creator UGC e influenciadora em Cabedelo, e adoro transformar produtos em histórias que a gente quer ouvir até o fim. Gravo com storytelling, dicas sinceras e aquele cenário de praia que deixa tudo mais leve e bonito.</p>
-          <p class="mono">Meu foco é fazer a sua cliente parar de rolar a tela, se reconhecer no vídeo e sentir vontade de comprar. Do roteiro à entrega, cuido de cada detalhe com carinho e com olhar de quem entende de venda.</p>
+          <h3 class="sobre-sub">Muito além de <em>mostrar um produto…</em></h3>
+          <p class="mono">Sou creator UGC e influenciadora em Cabedelo, na Paraíba, e adoro transformar produtos em histórias que a gente quer assistir até o fim.</p>
+          <p class="mono">Com storytelling, dicas sinceras e a leveza do cenário de praia, crio conteúdos que aproximam marcas de pessoas reais e tornam cada experiência mais autêntica e desejável.</p>
+          <p class="mono">Do roteiro à entrega final, cuido de cada detalhe com carinho e estratégia, unindo criatividade, estética e intenção de venda.</p>
+          <p class="mono">Meu objetivo é fazer sua marca ir além de aparecer na tela: quero criar conteúdos que conectam, encantam e despertam o desejo de comprar. 🌊</p>
           <ul class="promessas">
             <li><span>i.</span>Roteiro aprovado por você antes de gravar</li>
             <li><span>ii.</span>Uma rodada de ajuste inclusa</li>
