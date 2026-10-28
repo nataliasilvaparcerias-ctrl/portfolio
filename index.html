@@ -87,18 +87,29 @@ section[id]{scroll-margin-top:90px}
 .barra a.circulo:hover{background:rgba(236,225,208,.15)}
 
 /* ============ FAIXA DA BLACK FRIDAY (aparece de 1º de outubro até o dia da Black Friday) ============ */
-.faixa-bf{position:fixed;top:0;left:0;right:0;z-index:101;height:38px;display:flex;align-items:center;overflow:hidden;
-  background:#140807;color:var(--marfim);text-decoration:none;border-bottom:1px solid rgba(251,247,238,.15)}
+.faixa-bf{position:fixed;top:0;left:0;right:0;z-index:101;height:54px;display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,26px);
+  padding:0 12px;background:var(--nude);color:var(--vinho);border-bottom:3px solid var(--vinho);box-shadow:0 6px 18px -12px rgba(61,11,11,.6)}
 .faixa-bf[hidden]{display:none}
-.faixa-bf-trilho{display:flex;width:max-content;animation:rolar 38s linear infinite}
-.faixa-bf:hover .faixa-bf-trilho{animation-play-state:paused}
-.faixa-bf-trilho span{display:inline-flex;align-items:center;gap:14px;padding-right:14px;white-space:nowrap;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
-.faixa-bf-trilho b{font-family:var(--display);font-weight:400;font-size:1.25rem;letter-spacing:0;color:#ffd9d4;text-transform:none}
-.faixa-bf-trilho i{font-style:normal;color:#e0574b}
+.bf-selo{background:var(--vinho);color:var(--nude-claro);font-family:var(--ui);font-weight:700;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;padding:8px 16px;border-radius:10px;white-space:nowrap}
+.bf-dias{font-family:var(--ui);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.bf-dias b{font-size:1.25rem}
+.bf-frase{font-family:var(--ui);font-weight:500;font-size:.98rem;color:var(--tinta-suave);white-space:nowrap}
+.bf-botao{display:inline-flex;align-items:center;gap:8px;background:var(--vinho);color:var(--marfim);font-family:var(--ui);font-weight:700;font-size:.92rem;text-decoration:none;
+  padding:9px 18px;border-radius:10px;white-space:nowrap;transition:background-color .2s ease,transform .2s ease}
+.bf-botao:hover{background:var(--vinho-escuro);transform:translateY(-1px)}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.com-bf .topo{top:50px}
-.com-bf .capa{padding-top:156px}
-.com-bf section[id]{scroll-margin-top:128px}
+.com-bf .topo{top:66px}
+.com-bf .capa{padding-top:172px}
+.com-bf section[id]{scroll-margin-top:144px}
+@media (max-width:760px){ .bf-frase{display:none} }
+@media (max-width:480px){
+  .faixa-bf{gap:8px;padding:0 8px}
+  .bf-selo{font-size:.62rem;letter-spacing:.12em;padding:7px 9px}
+  .bf-dias{font-size:.88rem}
+  .bf-dias b{font-size:1rem}
+  .bf-botao{font-size:.8rem;padding:8px 11px}
+  .bf-botao .longo{display:none}
+}
 
 /* ============ MENU (pílula vinho flutuante) ============ */
 .topo{position:fixed;top:12px;left:0;right:0;z-index:100;pointer-events:none}
@@ -400,7 +411,7 @@ section[id]{scroll-margin-top:90px}
 @media (max-width:1240px){ .sobre-topo .polaroid{right:0;top:-100px;width:110px} }
 @media (max-width:1060px){
   .hamburguer{display:block}
-  .com-bf .menu{top:116px}
+  .com-bf .menu{top:132px}
   .menu{position:fixed;top:78px;left:16px;right:16px;background:var(--vinho);border-radius:var(--raio-m);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);
     max-height:0;overflow:hidden;visibility:hidden;transition:max-height .35s ease,visibility .35s}
   .menu.aberto{max-height:520px;visibility:visible}
@@ -421,7 +432,7 @@ section[id]{scroll-margin-top:90px}
 }
 @media (max-width:600px){
   .capa{padding-top:100px}
-  .com-bf .capa{padding-top:138px}
+  .com-bf .capa{padding-top:154px}
   .palco{grid-template-columns:1fr;text-align:center}
   .lado,.lado--esq,.lado--dir{align-items:center;text-align:center}
   .lado .nota{align-items:center!important}
@@ -491,10 +502,13 @@ section[id]{scroll-margin-top:90px}
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Faixa com a contagem para a Black Friday (o texto e a data são calculados no script) -->
-<a class="faixa-bf" id="faixa-bf" href="#contato" hidden>
-  <span class="sr-only" id="faixa-bf-leitor"></span>
-  <div class="faixa-bf-trilho" id="faixa-bf-trilho" aria-hidden="true"></div>
-</a>
+<aside class="faixa-bf" id="faixa-bf" aria-label="Contagem para a Black Friday" hidden>
+  <span class="bf-selo">Black Friday</span>
+  <span class="bf-dias" id="bf-dias">Faltam <b>0</b> dias</span>
+  <span class="bf-frase">Criativos que vendem</span>
+  <!-- O botão abre o WhatsApp com uma mensagem pronta pedindo orçamento -->
+  <a class="bf-botao" id="bf-botao" href="#contato" target="_blank" rel="noopener">Solicitar orçamento<span class="longo"> para a Black</span> →</a>
+</aside>
 
 <!-- ============ MENU ============ -->
 <header class="topo" id="topo">
@@ -1434,12 +1448,10 @@ $("#compartilhar").addEventListener("click", async (e) => {
   if (hoje < inicio) return;
   const dias = Math.round((bf - hoje) / 86400000);
   const data = bf.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
-  const frase = dias === 0
-    ? `<i>✦</i> É hoje! <b>Black Friday</b> <i>✦</i> Bora vender com conteúdo que converte`
-    : `<i>✦</i> Contagem <b>Black Friday</b> <i>✦</i> Faltam <b>${dias} ${dias === 1 ? "dia" : "dias"}</b> (${data}) <i>✦</i> Garanta já os conteúdos da sua campanha`;
-  const item = `<span>${frase}</span>`;
-  $("#faixa-bf-trilho").innerHTML = item.repeat(8);
-  $("#faixa-bf-leitor").textContent = dias === 0 ? "Hoje é Black Friday. Fale comigo para a sua campanha." : `Faltam ${dias} dias para a Black Friday, em ${data}. Garanta os conteúdos da sua campanha.`;
+  $("#bf-dias").innerHTML = dias === 0 ? "<b>É hoje!</b>" : `Faltam <b>${dias}</b> ${dias === 1 ? "dia" : "dias"}`;
+  $("#bf-dias").title = `Black Friday: ${data}`;
+  const msg = `Oi, Natalia! Vi seu portfólio e quero um orçamento de conteúdo para a Black Friday (${data}).`;
+  $("#bf-botao").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   $("#faixa-bf").hidden = false;
   document.body.classList.add("com-bf");
 })();
