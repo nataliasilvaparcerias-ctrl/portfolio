@@ -110,7 +110,7 @@ section[id]{scroll-margin-top:90px}
 .capa h1{position:relative;z-index:3;color:var(--vinho);text-transform:uppercase;font-size:clamp(3rem,9.6vw,8.8rem);line-height:.86;letter-spacing:-.015em}
 .capa h1 em{font-style:italic;text-transform:none}
 .palco{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,3vw,40px)}
-.capa-foto{position:relative;z-index:2;width:clamp(260px,34vw,440px);margin-top:calc(-1 * clamp(1.6rem,4.6vw,4.4rem));align-self:end}
+.capa-foto{position:relative;z-index:2;width:clamp(290px,40vw,530px);margin-top:calc(-1 * clamp(1.6rem,4.6vw,4.4rem));align-self:end}
 /* Foto da capa esfumada nos quatro lados, para se misturar ao fundo */
 .capa-foto .midia{aspect-ratio:3/4.1;background:transparent;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 16%,#000 82%,transparent);
@@ -362,7 +362,7 @@ section[id]{scroll-margin-top:90px}
 }
 @media (max-width:900px){
   .palco{grid-template-columns:1fr 1fr}
-  .capa-foto{grid-column:1/-1;grid-row:1;margin-inline:auto;width:min(380px,84%)}
+  .capa-foto{grid-column:1/-1;grid-row:1;margin-inline:auto;width:min(440px,92%)}
   .lado{padding:24px 0 30px!important;gap:22px}
   .sobre-grade,.numeros-grade,.contato-cartao{grid-template-columns:1fr}
   .sobre-foto{margin-inline:auto}
@@ -463,7 +463,7 @@ section[id]{scroll-margin-top:90px}
 
   <!-- ============ 1. CAPA ============ -->
   <section class="capa" id="inicio" aria-labelledby="titulo-capa">
-    <svg class="deco brilho" style="top:30%;left:7%" aria-hidden="true"><use href="#brilho"/></svg>
+    <svg class="deco brilho" style="top:19%;left:6%" aria-hidden="true"><use href="#brilho"/></svg>
     <svg class="deco brilho" style="top:22%;right:9%;width:32px;height:32px" aria-hidden="true"><use href="#brilho"/></svg>
     <div class="container">
       <h1 id="titulo-capa">Oi, <em>eu sou</em> Natalia</h1>
@@ -483,11 +483,11 @@ section[id]{scroll-margin-top:90px}
           <!-- FOTO DA CAPA: para trocar, coloque a nova foto na pasta "imagens" e mude o src abaixo.
                Fotos com fundo liso no topo ficam melhores, porque o nome passa por cima. -->
           <div class="midia">
-            <img src="imagens/natalia-capa.webp" alt="Natalia Silva com cabelo cacheado e brinco dourado" width="918" height="1782" fetchpriority="high">
+            <img src="imagens/natalia-capa.jpg" alt="Natalia Silva com cabelo cacheado e brinco dourado" width="918" height="1782" fetchpriority="high">
           </div>
           <!-- Atalho para o melhor conteúdo: usa o primeiro item do array "destaques" -->
           <a class="chip-reel" id="chip-capa" href="#destaques">
-            <span class="mini"><img src="imagens/natalia-capa.webp" alt="" width="918" height="1782"></span>
+            <span class="mini"><img src="imagens/natalia-capa.jpg" alt="" width="918" height="1782"></span>
             <span><b id="chip-capa-num">+19M</b><small id="chip-capa-rot">views no reels</small></span>
           </a>
         </div>
@@ -514,7 +514,7 @@ section[id]{scroll-margin-top:90px}
         <h2 class="titulo" id="titulo-sobre">UGC creator, influenciadora <em>e a sua</em> amiga das dicas</h2>
         <div class="polaroid">
           <span class="fita" aria-hidden="true" style="width:60px;height:20px;top:-9px"></span>
-          <div class="midia"><img src="imagens/natalia-capa.webp" alt="" width="918" height="1782" loading="lazy" style="object-position:50% 22%"></div>
+          <div class="midia"><img src="imagens/natalia-capa.jpg" alt="" width="918" height="1782" loading="lazy" style="object-position:50% 22%"></div>
         </div>
       </div>
 
@@ -676,7 +676,7 @@ section[id]{scroll-margin-top:90px}
         <div class="perfil revelar">
           <div class="perfil-dentro">
             <div class="perfil-topo">
-              <span class="avatar"><img src="imagens/natalia-capa.webp" alt="" width="918" height="1782" loading="lazy"></span>
+              <span class="avatar"><img src="imagens/natalia-capa.jpg" alt="" width="918" height="1782" loading="lazy"></span>
               <span><b>Natalia Silva</b><small>@natallia_silvaa · Cabedelo</small></span>
             </div>
             <ul class="metricas" id="metricas"></ul>
@@ -907,7 +907,7 @@ const destaques = [
   {
     link: "https://youtube.com/shorts/u3UW2vAa3uk",  /* troque pelo link do reels no Instagram, se preferir */
     capa: "https://i.ytimg.com/vi/u3UW2vAa3uk/hqdefault.jpg",
-    numero: "+2M",                                  /* CONFIRMAR o número exato */
+    numero: "+2M",                                  /* 2,9 milhões */
     rotulo: "views",
     titulo: "Eucerin",
     contexto: "Skincare · publi que passou de 2 milhões de views."
@@ -915,7 +915,7 @@ const destaques = [
 ];
 
 /* Nichos dos filtros (o botão "todos" é criado automaticamente) */
-const nichos = ["beleza", "skincare", "perfumes", "moda", "receitas", "fitness", "casa e decoração", "casal", "diário da noiva", "saúde e bem-estar", "tiktok shop", "pet", "apps e tech"];
+const nichos = ["beleza", "skincare", "moda", "receitas", "fitness", "casa e decoração", "casal", "diário da noiva", "saúde e bem-estar", "tiktok shop", "pet", "apps e tech"];
 
 /* Trabalhos da galeria (vídeos do YouTube Shorts)
    nicho: igual a um dos nomes da lista "nichos"
@@ -932,18 +932,17 @@ const trabalhos = [
   { nicho: "beleza",            marca: "Prohall",           formato: "Perfume para cabelo",  video: "https://youtube.com/shorts/MzCvREV3fNs" },
   { nicho: "beleza",            marca: "Amobeleza",         formato: "Make",                 video: "https://youtube.com/shorts/-zzrAgH5b4s" },
   { nicho: "beleza",            marca: "Petrizzi",          formato: "Make",                 video: "https://youtube.com/shorts/AvTJPjMU2z4" },
-  { nicho: "beleza",            marca: "Natura",            formato: "Beleza",               video: "https://youtube.com/shorts/YMcpeJZZgTk" },
+  { nicho: "tiktok shop",       marca: "Natura",            formato: "TikTok Shop",               video: "https://youtube.com/shorts/YMcpeJZZgTk" },
   { nicho: "tiktok shop",       marca: "Beleza",            formato: "TikTok Shop",          video: "https://youtube.com/shorts/rgmvhzLlQwo" },
-  { nicho: "beleza",            marca: "Alastra",           formato: "Beleza",               video: "https://youtube.com/shorts/YfkYImDkJtU" }, /* CONFIRMAR o nicho */
-  { nicho: "beleza",            marca: "Black Friday",      formato: "Beleza",               video: "https://youtube.com/shorts/02Rj10J1pyw" },
-  { nicho: "beleza",            marca: "Black Friday",      formato: "Beleza",               video: "https://youtube.com/shorts/SeANXEuf-wc" },
+  { nicho: "tiktok shop",       marca: "Alastra",           formato: "TikTok Shop",          video: "https://youtube.com/shorts/YfkYImDkJtU" },
+  { nicho: "tiktok shop",       marca: "Black Friday",      formato: "TikTok Shop",          video: "https://youtube.com/shorts/02Rj10J1pyw" },
   /* Skincare */
   { nicho: "skincare",          marca: "Principia",         formato: "Skincare",             video: "https://youtube.com/shorts/_8guf-70vyc" },
   { nicho: "skincare",          marca: "Petrizzi",          formato: "Skincare",             video: "https://youtube.com/shorts/EEqhsLfExxM" },
   { nicho: "skincare",          marca: "Eucerin",           formato: "Skincare",             video: "https://youtube.com/shorts/u3UW2vAa3uk" },
-  /* Perfumes */
-  { nicho: "perfumes",          marca: "Entre Notas Perfumaria", formato: "Perfume",         video: "https://youtube.com/shorts/7IbWaT88pH8" },
-  { nicho: "perfumes",          marca: "Amobeleza",         formato: "Perfume",              video: "https://youtube.com/shorts/FEkk7spLDmQ" },
+  /* Perfumes (dentro de beleza) */
+  { nicho: "beleza",            marca: "Entre Notas Perfumaria", formato: "Perfume",         video: "https://youtube.com/shorts/7IbWaT88pH8" },
+  { nicho: "beleza",            marca: "Amobeleza",         formato: "Perfume",              video: "https://youtube.com/shorts/FEkk7spLDmQ" },
   /* Moda */
   { nicho: "moda",              marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/QanHElo590k" },
   { nicho: "moda",              marca: "Pozze",             formato: "Moda",                 video: "https://youtube.com/shorts/YLVZBqb1nt0" },
@@ -1038,7 +1037,7 @@ const metricas = [
 /* Resultados de campanha */
 const resultados = [
   { numero: "+19M", rotulo: "views em um reels", texto: "Principia · skincare. Meu vídeo mais visto até hoje." },
-  { numero: "+2M",  rotulo: "views em um vídeo", texto: "Eucerin · skincare." },          /* CONFIRMAR o número exato */
+  { numero: "+2M",  rotulo: "views em um vídeo", texto: "Eucerin · skincare. Quase 3 milhões de views." },
   { numero: "+1M",  rotulo: "views em um reels", texto: "Cereja Rosa · moda." }
 ];
 
@@ -1099,7 +1098,7 @@ $("#reels").innerHTML = destaques.map((d) => `
         </div>
         <span class="play"><svg aria-hidden="true"><use href="#play"/></svg></span>
         <span class="chip-reel">
-          <span class="mini"><img src="imagens/natalia-capa.webp" alt="" loading="lazy"></span>
+          <span class="mini"><img src="imagens/natalia-capa.jpg" alt="" loading="lazy"></span>
           <span><b>${esc(d.numero)}</b><small>${esc(d.rotulo)}</small></span>
         </span>
       </div>
