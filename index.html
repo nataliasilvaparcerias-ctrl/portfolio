@@ -825,7 +825,7 @@ section[id]{scroll-margin-top:90px}
    ========================================================= */
 
 /* Logos da faixa que rola na capa.
-   arquivo: nome do arquivo dentro da pasta "imagens/marcas"
+   arquivo: nome do arquivo dentro da pasta "imagens/marcas" (o site mostra a versão em vinho, da pasta "imagens/marcas-vinho")
    nome: nome da marca (é lido por quem usa leitor de tela)
    Para adicionar um logo: coloque o arquivo na pasta e acrescente uma linha aqui. */
 const logos = [
@@ -1125,7 +1125,7 @@ $("#chip-capa-rot").textContent = top1.rotulo;
 
 /* Faixa de logos (duas cópias para o movimento contínuo) */
 const listaLogos = (comAlt) => logos.map((l) =>
-  `<li><img src="imagens/marcas/${esc(l.arquivo)}" alt="${comAlt ? esc(l.nome) : ""}" decoding="async"></li>`).join("");
+  `<li><img src="imagens/marcas-vinho/${esc(l.arquivo)}" alt="${comAlt ? esc(l.nome) : ""}" decoding="async"></li>`).join("");
 $("#faixa-trilho").innerHTML = `<ul>${listaLogos(true)}</ul><ul aria-hidden="true">${listaLogos(false)}</ul>`;
 
 /* Destaques */
