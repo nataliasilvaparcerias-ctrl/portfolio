@@ -225,6 +225,29 @@ section[id]{scroll-margin-top:90px}
 .trabalho .legenda-midia{margin-bottom:56px}
 .trabalho a{position:absolute;inset:0;z-index:2}
 
+/* ============ FOTOS ============ */
+.galeria{columns:4 220px;column-gap:12px;list-style:none;margin:0;padding:0}
+.galeria li{break-inside:avoid;margin-bottom:12px}
+.galeria button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:20px;overflow:hidden;box-shadow:0 16px 30px -22px rgba(61,11,11,.6)}
+.galeria img{width:100%;height:auto;transition:transform .5s ease}
+.galeria button:hover img{transform:scale(1.04)}
+.visor{position:fixed;inset:0;z-index:400;background:rgba(42,26,21,.92);display:flex;align-items:center;justify-content:center;gap:12px;padding:16px}
+.visor[hidden]{display:none}
+.visor img{max-width:min(92vw,900px);max-height:88vh;width:auto;height:auto;border-radius:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.visor-fechar{position:absolute;top:14px;right:14px;width:48px;height:48px;border-radius:50%;border:0;background:var(--marfim);color:var(--vinho);font-size:1.8rem;line-height:1;cursor:pointer}
+.visor-seta{flex:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--marfim);color:var(--vinho);display:grid;place-items:center;cursor:pointer}
+.visor-seta svg{width:20px;height:20px}
+@media (max-width:600px){
+  .galeria{columns:2;column-gap:8px}
+  .galeria li{margin-bottom:8px}
+  .galeria button{border-radius:14px}
+  .visor{gap:0}
+  .visor-seta{position:absolute;bottom:20px}
+  #visor-ant{left:calc(50% - 60px)}
+  #visor-prox{left:calc(50% + 12px)}
+  .visor img{max-height:78vh}
+}
+
 /* ============ SERVIÇOS ============ */
 .servicos{background:radial-gradient(circle at 20% 0%,#45403c,var(--concreto) 60%);color:var(--marfim);overflow:hidden}
 .servicos::before{content:"";position:absolute;inset:0;pointer-events:none;
@@ -652,6 +675,36 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
   </section>
+
+  <!-- ============ FOTOS ============ -->
+  <section class="secao" id="fotos" aria-labelledby="titulo-fotos" style="padding-top:0">
+    <div class="container">
+      <div class="cabeca revelar">
+        <div>
+          <span class="rotulo">Fotos</span>
+          <h2 class="titulo" id="titulo-fotos">Minhas <em>fotos</em></h2>
+        </div>
+        <p class="mono">Ensaios, looks e fotos de produto. Clique em uma foto para ver maior.</p>
+      </div>
+      <div class="cartao revelar">
+        <div class="barra">
+          <span class="circulo" aria-hidden="true"><svg><use href="#casa"/></svg></span>
+          <span class="barra-texto"><b>Natalia</b><small>galeria de fotos</small></span>
+          <span class="circulo" aria-hidden="true"><svg><use href="#lupa"/></svg></span>
+        </div>
+        <!-- As fotos vêm do array "fotos" no script (arquivos na pasta imagens/fotos) -->
+        <ul class="galeria" id="galeria"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visualizador de fotos em tela cheia -->
+  <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button type="button" class="visor-fechar" id="visor-fechar" aria-label="Fechar foto">×</button>
+    <button type="button" class="visor-seta" id="visor-ant" aria-label="Foto anterior"><svg aria-hidden="true" style="transform:scaleX(-1)"><use href="#seta-dir"/></svg></button>
+    <img id="visor-img" src="" alt="">
+    <button type="button" class="visor-seta" id="visor-prox" aria-label="Próxima foto"><svg aria-hidden="true"><use href="#seta-dir"/></svg></button>
+  </div>
 
   <!-- ============ 5. COMO EU TE AJUDO ============ -->
   <section class="secao servicos" id="servicos" aria-labelledby="titulo-servicos">
@@ -1093,6 +1146,32 @@ const depoimentos = [
 /* WhatsApp no formato internacional, só números */
 const WHATSAPP = "5563999417642";
 
+/* Galeria de fotos (arquivos na pasta "imagens/fotos")
+   Para adicionar uma foto: coloque o arquivo na pasta e acrescente uma linha aqui. */
+const fotos = [
+  { arquivo: "foto-01.jpg", alt: "Natalia com cabelo cacheado, brinco dourado e vestido branco" },
+  { arquivo: "foto-02.jpg", alt: "Natalia sorrindo em fundo vermelho, com vestido amarelo e colar dourado" },
+  { arquivo: "foto-03.jpg", alt: "Natalia abraçada a um gato preto em fundo vermelho" },
+  { arquivo: "foto-04.jpg", alt: "Natalia correndo na orla, de top preto e short coral" },
+  { arquivo: "foto-05.jpg", alt: "Natalia na praia, de chapéu de palha, bebendo um drink e sorrindo" },
+  { arquivo: "foto-06.jpg", alt: "Natalia com cabelo cacheado e vestido marrom" },
+  { arquivo: "foto-07.jpg", alt: "Natalia na rua com blusa de oncinha, calça jeans e óculos de sol" },
+  { arquivo: "foto-08.jpg", alt: "Detalhe do look com blusa de oncinha, colar e bracelete dourados" },
+  { arquivo: "foto-09.jpg", alt: "Natalia caminhando em frente a uma porta branca, com blusa de oncinha e jeans" },
+  { arquivo: "foto-10.jpg", alt: "Natalia sorrindo de camiseta preta e saia de oncinha, em frente a um portão" },
+  { arquivo: "foto-11.jpg", alt: "Natalia em frente a uma casa amarela, de camiseta preta, saia de oncinha e bota" },
+  { arquivo: "foto-12.jpg", alt: "Natalia sentada no centro histórico, de vestido branco e bota de couro" },
+  { arquivo: "foto-13.jpg", alt: "Natalia na beira do mar, de biquíni, saída branca e chapéu de palha" },
+  { arquivo: "foto-14.jpg", alt: "Natalia na cadeira de praia, de biquíni e chapéu de palha" },
+  { arquivo: "foto-15.jpg", alt: "Natalia caminhando na passarela de madeira da praia, com camisa laranja" },
+  { arquivo: "foto-16.jpg", alt: "Natalia de camisa laranja segurando um coco na orla" },
+  { arquivo: "foto-17.jpg", alt: "Natalia correndo na orla, de macaquinho azul e faixa branca" },
+  { arquivo: "foto-18.jpg", alt: "Natalia segurando um produto Petrizi, de olhos fechados" },
+  { arquivo: "foto-19.jpg", alt: "Natalia mostrando um par de sandálias Bebecê" },
+  { arquivo: "foto-20.jpg", alt: "Natalia com maquiagem artística verde e brilhos" },
+  { arquivo: "foto-21.jpg", alt: "Natalia de blusa de cetim branca e saia jeans longa, entre plantas" }
+];
+
 /* =========================================================
    A PARTIR DAQUI É O FUNCIONAMENTO DA PÁGINA
    ========================================================= */
@@ -1383,6 +1462,40 @@ function fecharModal() {
 setTimeout(abrirModal, 7000);
 $("#modal-fechar").addEventListener("click", fecharModal);
 $("#modal-fundo").addEventListener("click", fecharModal);
+/* Galeria de fotos + visualizador */
+$("#galeria").innerHTML = fotos.map((f, i) => `
+  <li><button type="button" data-i="${i}" aria-label="Ampliar foto: ${esc(f.alt)}">
+    <img src="imagens/fotos/${esc(f.arquivo)}" alt="${esc(f.alt)}" loading="lazy">
+  </button></li>`).join("");
+const visor = $("#visor"), visorImg = $("#visor-img");
+let fotoAtual = 0, focoAntesVisor = null;
+function mostrarFoto(i) {
+  fotoAtual = (i + fotos.length) % fotos.length;
+  visorImg.src = "imagens/fotos/" + fotos[fotoAtual].arquivo;
+  visorImg.alt = fotos[fotoAtual].alt;
+}
+function abrirVisor(i) { focoAntesVisor = document.activeElement; mostrarFoto(i); visor.hidden = false; document.body.style.overflow = "hidden"; $("#visor-fechar").focus(); }
+function fecharVisor() { if (visor.hidden) return; visor.hidden = true; document.body.style.overflow = ""; if (focoAntesVisor) focoAntesVisor.focus(); }
+$("#galeria").addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) abrirVisor(Number(b.dataset.i)); });
+$("#visor-fechar").addEventListener("click", fecharVisor);
+$("#visor-ant").addEventListener("click", () => mostrarFoto(fotoAtual - 1));
+$("#visor-prox").addEventListener("click", () => mostrarFoto(fotoAtual + 1));
+visor.addEventListener("click", (e) => { if (e.target === visor) fecharVisor(); });
+/* No celular: arrastar para o lado troca a foto */
+let toqueX = null;
+visor.addEventListener("touchstart", (e) => { toqueX = e.touches[0].clientX; }, { passive: true });
+visor.addEventListener("touchend", (e) => {
+  if (toqueX === null) return;
+  const dx = e.changedTouches[0].clientX - toqueX; toqueX = null;
+  if (Math.abs(dx) > 40) mostrarFoto(fotoAtual + (dx < 0 ? 1 : -1));
+});
+document.addEventListener("keydown", (e) => {
+  if (visor.hidden) return;
+  if (e.key === "Escape") { fecharVisor(); e.stopImmediatePropagation(); }
+  else if (e.key === "ArrowRight") mostrarFoto(fotoAtual + 1);
+  else if (e.key === "ArrowLeft") mostrarFoto(fotoAtual - 1);
+});
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") { fecharModal(); alternarMenu(false); }
   if (e.key === "Tab" && !modal.hidden) {
