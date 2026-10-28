@@ -540,7 +540,7 @@ section[id]{scroll-margin-top:90px}
           <ul class="promessas">
             <li><span>i.</span>Roteiro aprovado por você antes de gravar</li>
             <li><span>ii.</span>Uma rodada de ajuste inclusa</li>
-            <li><span>iii.</span>Entrega em até 72 horas úteis</li>
+            <li><span>iii.</span>Entrega em até 5 dias após a aprovação do roteiro</li>
           </ul>
           <a href="#contato" class="botao botao--vinho">Trabalhe comigo</a>
           <p class="assinatura">Natalia Silva</p>
@@ -708,6 +708,8 @@ section[id]{scroll-margin-top:90px}
             <a class="canal" href="https://wa.me/5563999417642" target="_blank" rel="noopener"><b>WhatsApp</b><span>(63) 99941-7642</span></a>
             <a class="canal" href="mailto:nataliasilvaparcerias@gmail.com"><b>E-mail</b><span>nataliasilvaparcerias@gmail.com</span></a>
             <a class="canal" href="https://www.instagram.com/natallia_silvaa/" target="_blank" rel="noopener"><b>Instagram</b><span>@natallia_silvaa</span></a>
+            <a class="canal" href="https://www.tiktok.com/@natalia_silvaah" target="_blank" rel="noopener"><b>TikTok</b><span>@natalia_silvaah</span></a>
+            <a class="canal" href="https://www.youtube.com/@natallia_silvaa" target="_blank" rel="noopener"><b>YouTube</b><span>@natallia_silvaa</span></a>
           </div>
           <p class="local">Cabedelo, Paraíba · atendo marcas de todo o Brasil</p>
         </div>
@@ -756,9 +758,10 @@ section[id]{scroll-margin-top:90px}
       <a href="#inicio" class="circulo" aria-label="Voltar ao início"><svg aria-hidden="true"><use href="#casa"/></svg></a>
       <ul class="redes">
         <li><a href="https://www.instagram.com/natallia_silvaa/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@natalia_silvaah" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@natallia_silvaa" target="_blank" rel="noopener">YouTube</a></li>
         <li><a href="https://wa.me/5563999417642" target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a href="mailto:nataliasilvaparcerias@gmail.com">E-mail</a></li>
-        <!-- Adicione outras redes aqui, por exemplo TikTok: https://www.tiktok.com/@seuusuario -->
       </ul>
       <small>© <span id="ano"></span> Natalia Silva · UGC Creator e Influenciadora</small>
     </div>
@@ -875,15 +878,15 @@ const marcasSemLogo = [
   "Aperol", "Morango do Nordeste"
 ];
 
-/* Todas as marcas (o número de "marcas atendidas" usa o total desta lista) */
+/* Todas as marcas da lista (o número "marcas atendidas" exibido no site é fixo: +400, nos arrays numerosCapa e metricas) */
 const marcas = [...logos.map((l) => l.nome), ...marcasSemLogo];
 
 /* Números da capa: o primeiro fica do lado esquerdo, os outros do lado direito.
    valor: número que o contador anima (ou texto, se for placeholder) */
 const numerosCapa = [
-  { valor: marcas.length, rotulo: "marcas atendidas" },
+  { valor: 400, prefixo: "+", rotulo: "marcas atendidas" },
   { valor: 22, prefixo: "+", sufixo: "M", rotulo: "views nos destaques" },  /* soma dos 3 destaques: 19M + 1M + 2M */
-  { valor: "00", rotulo: "vídeos entregues" }   /* PLACEHOLDER: troque "00" pelo seu número, ex.: 150 */
+  { valor: 5, sufixo: " dias", rotulo: "para entregar após o roteiro" }
 ];
 
 /* Conteúdos de destaque (o primeiro também aparece no atalho da capa)
@@ -1033,8 +1036,8 @@ const CASAMENTO = { ano: 2027, mes: 3, dia: 0 };
 const metricas = [
   { valor: 22, prefixo: "+", sufixo: "M", rotulo: "views somadas" },
   { valor: 19, prefixo: "+", sufixo: "M", rotulo: "no maior reels" },
-  { valor: marcas.length, rotulo: "marcas atendidas" },
-  { valor: "00", rotulo: "vídeos entregues" }     /* PLACEHOLDER: troque "00" pelo seu número */
+  { valor: 400, prefixo: "+", rotulo: "marcas atendidas" },
+  { valor: 5, sufixo: " dias", rotulo: "de entrega após o roteiro" }
 ];
 
 /* Resultados de campanha */
