@@ -111,8 +111,12 @@ section[id]{scroll-margin-top:90px}
 .capa h1 em{font-style:italic;text-transform:none}
 .palco{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,3vw,40px)}
 .capa-foto{position:relative;z-index:2;width:clamp(260px,34vw,440px);margin-top:calc(-1 * clamp(1.6rem,4.6vw,4.4rem));align-self:end}
+/* Foto da capa esfumada nos quatro lados, para se misturar ao fundo */
 .capa-foto .midia{aspect-ratio:3/4.1;background:transparent;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 16%,#000 82%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 16%,#000 82%,transparent);
+  mask-composite:intersect}
 .capa-foto .midia img{object-position:50% 12%}
 .lado{display:flex;flex-direction:column;gap:clamp(26px,4vw,50px);color:var(--vinho);position:relative;z-index:3}
 .lado--esq{align-items:flex-start;text-align:left;padding-left:clamp(0px,2vw,30px)}
@@ -204,8 +208,8 @@ section[id]{scroll-margin-top:90px}
 .trabalho{position:relative;flex:0 0 clamp(150px,19vw,210px);aspect-ratio:9/16;border-radius:20px;overflow:hidden;scroll-snap-align:start}
 .trabalho .midia{position:absolute;inset:0}
 /* A capa do YouTube Shorts vem com faixas escuras nas laterais: ampliamos para mostrar só o vídeo vertical */
-.trabalho .midia img.capa-yt{left:50%;top:50%;right:auto;bottom:auto;max-width:none;width:237%;height:auto;min-height:100%;object-fit:cover;transform:translate(-50%,-50%);transition:transform .5s ease}
-.trabalho:hover .midia img.capa-yt{transform:translate(-50%,-50%) scale(1.05)}
+.midia img.capa-yt{left:50%;top:50%;right:auto;bottom:auto;max-width:none;width:237%;height:auto;min-height:100%;object-fit:cover;transform:translate(-50%,-50%);transition:transform .5s ease}
+.trabalho:hover .midia img.capa-yt,.reel:hover .midia img.capa-yt{transform:translate(-50%,-50%) scale(1.05)}
 .play-mini{position:absolute;top:10px;right:10px;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(251,247,238,.92);color:var(--vinho);display:grid;place-items:center;transition:transform .25s ease}
 .play-mini svg{width:14px;height:14px;margin-left:2px}
 .trabalho:hover .play-mini{transform:scale(1.1)}
@@ -875,37 +879,38 @@ const marcas = [...logos.map((l) => l.nome), ...marcasSemLogo];
    valor: número que o contador anima (ou texto, se for placeholder) */
 const numerosCapa = [
   { valor: marcas.length, rotulo: "marcas atendidas" },
-  { valor: 20, prefixo: "+", sufixo: "M", rotulo: "views nos destaques" },
+  { valor: 22, prefixo: "+", sufixo: "M", rotulo: "views nos destaques" },  /* soma dos 3 destaques: 19M + 1M + 2M */
   { valor: "00", rotulo: "vídeos entregues" }   /* PLACEHOLDER: troque "00" pelo seu número, ex.: 150 */
 ];
 
 /* Conteúdos de destaque (o primeiro também aparece no atalho da capa)
    link: endereço do vídeo
-   capa: imagem vertical 9:16 na pasta "imagens" (deixe "" para usar o degradê) */
+   capa: imagem vertical 9:16 na pasta "imagens", ou a capa do YouTube
+         ("https://i.ytimg.com/vi/CODIGO_DO_VIDEO/hqdefault.jpg") */
 const destaques = [
   {
     link: "https://www.instagram.com/reel/DQm_jo_Ecev/",
-    capa: "",                                    /* ex.: "imagens/capa-reel-1.jpg" */
+    capa: "https://i.ytimg.com/vi/_8guf-70vyc/hqdefault.jpg",
     numero: "+19M",
     rotulo: "views no reels",
-    titulo: "TÍTULO DO CONTEÚDO 01",              /* PLACEHOLDER */
-    contexto: "Uma linha de contexto: marca, produto ou ideia do vídeo." /* PLACEHOLDER */
+    titulo: "Principia",
+    contexto: "Skincare · meu vídeo mais visto até hoje."
   },
   {
     link: "https://www.instagram.com/reel/DTbRX-oEcSJ/",
-    capa: "",
+    capa: "https://i.ytimg.com/vi/LZmrOXFuevk/hqdefault.jpg",
     numero: "+1M",
     rotulo: "views no reels",
-    titulo: "TÍTULO DO CONTEÚDO 02",              /* PLACEHOLDER */
-    contexto: "Uma linha de contexto: marca, produto ou ideia do vídeo." /* PLACEHOLDER */
+    titulo: "Cereja Rosa",
+    contexto: "Moda · publi que passou de 1 milhão de views."
   },
   {
-    link: "#",                                    /* PLACEHOLDER: cole aqui o link do terceiro vídeo */
-    capa: "",
-    numero: "+00",                                /* PLACEHOLDER */
-    rotulo: "views no reels",
-    titulo: "TÍTULO DO CONTEÚDO 03",              /* PLACEHOLDER */
-    contexto: "Uma linha de contexto: marca, produto ou ideia do vídeo." /* PLACEHOLDER */
+    link: "https://youtube.com/shorts/u3UW2vAa3uk",  /* troque pelo link do reels no Instagram, se preferir */
+    capa: "https://i.ytimg.com/vi/u3UW2vAa3uk/hqdefault.jpg",
+    numero: "+2M",                                  /* CONFIRMAR o número exato */
+    rotulo: "views",
+    titulo: "Eucerin",
+    contexto: "Skincare · publi que passou de 2 milhões de views."
   }
 ];
 
@@ -1024,7 +1029,7 @@ const CASAMENTO = { ano: 2027, mes: 3, dia: 0 };
 
 /* Métricas com contador (cartão de perfil na seção Números) */
 const metricas = [
-  { valor: 20, prefixo: "+", sufixo: "M", rotulo: "views somadas" },
+  { valor: 22, prefixo: "+", sufixo: "M", rotulo: "views somadas" },
   { valor: 19, prefixo: "+", sufixo: "M", rotulo: "no maior reels" },
   { valor: marcas.length, rotulo: "marcas atendidas" },
   { valor: "00", rotulo: "vídeos entregues" }     /* PLACEHOLDER: troque "00" pelo seu número */
@@ -1032,9 +1037,9 @@ const metricas = [
 
 /* Resultados de campanha */
 const resultados = [
-  { numero: "+19M", rotulo: "views em um reels", texto: "Conteúdo de destaque 01. Escreva aqui a marca e o que o vídeo trouxe para ela." },
-  { numero: "+1M",  rotulo: "views em um reels", texto: "Conteúdo de destaque 02. Escreva aqui a marca e o que o vídeo trouxe para ela." },
-  { numero: "+00%", rotulo: "RESULTADO DA CAMPANHA", texto: "Marca 01 · descreva aqui um resultado real, como vendas, cliques ou seguidores." } /* PLACEHOLDER */
+  { numero: "+19M", rotulo: "views em um reels", texto: "Principia · skincare. Meu vídeo mais visto até hoje." },
+  { numero: "+2M",  rotulo: "views em um vídeo", texto: "Eucerin · skincare." },          /* CONFIRMAR o número exato */
+  { numero: "+1M",  rotulo: "views em um reels", texto: "Cereja Rosa · moda." }
 ];
 
 /* Depoimentos */
@@ -1090,7 +1095,7 @@ $("#reels").innerHTML = destaques.map((d) => `
     <a class="reel" href="${esc(d.link)}" ${externo(d.link)} aria-label="Assistir: ${esc(d.titulo)}, ${esc(d.numero)} ${esc(d.rotulo)}">
       <div class="quadro">
         <div class="midia">
-          ${d.capa ? `<img src="${esc(d.capa)}" alt="" loading="lazy">` : `<span class="legenda-midia">capa do vídeo 9:16</span>`}
+          ${d.capa ? `<img src="${esc(d.capa)}" alt=""${/ytimg\.com/.test(d.capa) ? ' class="capa-yt"' : ""}>` : `<span class="legenda-midia">capa do vídeo 9:16</span>`}
         </div>
         <span class="play"><svg aria-hidden="true"><use href="#play"/></svg></span>
         <span class="chip-reel">
