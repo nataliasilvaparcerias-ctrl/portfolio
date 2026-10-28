@@ -87,9 +87,14 @@ section[id]{scroll-margin-top:90px}
 .barra a.circulo:hover{background:rgba(236,225,208,.15)}
 
 /* ============ FAIXA DA BLACK FRIDAY (aparece de 1º de outubro até o dia da Black Friday) ============ */
-.faixa-bf{position:fixed;top:0;left:0;right:0;z-index:101;height:54px;display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,26px);
-  padding:0 12px;background:var(--nude);color:var(--vinho);border-bottom:3px solid var(--vinho);box-shadow:0 6px 18px -12px rgba(61,11,11,.6)}
+.faixa-bf{position:fixed;top:0;left:0;right:0;z-index:101;height:54px;display:flex;align-items:center;overflow:hidden;
+  background:var(--nude);color:var(--vinho);border-bottom:3px solid var(--vinho);box-shadow:0 6px 18px -12px rgba(61,11,11,.6)}
 .faixa-bf[hidden]{display:none}
+/* A faixa passa de lado, como a faixa de marcas; para quando o mouse ou o dedo está em cima */
+.bf-trilho{display:flex;width:max-content;animation:rolar 45s linear infinite}
+.faixa-bf:hover .bf-trilho,.faixa-bf:focus-within .bf-trilho{animation-play-state:paused}
+.bf-grupo{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);padding-right:clamp(10px,1.6vw,22px)}
+.bf-sep{color:var(--vinho);opacity:.5;font-size:.9rem}
 .bf-selo{background:var(--vinho);color:var(--nude-claro);font-family:var(--ui);font-weight:700;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;padding:8px 16px;border-radius:10px;white-space:nowrap}
 .bf-dias{font-family:var(--ui);font-weight:700;font-size:1.05rem;white-space:nowrap}
 .bf-dias b{font-size:1.25rem}
@@ -101,15 +106,14 @@ section[id]{scroll-margin-top:90px}
 .com-bf .topo{top:66px}
 .com-bf .capa{padding-top:172px}
 .com-bf section[id]{scroll-margin-top:144px}
-@media (max-width:760px){ .bf-frase{display:none} }
 @media (max-width:480px){
-  .faixa-bf{gap:8px;padding:0 8px}
-  .bf-selo{font-size:.62rem;letter-spacing:.12em;padding:7px 9px}
-  .bf-dias{font-size:.88rem}
-  .bf-dias b{font-size:1rem}
-  .bf-botao{font-size:.8rem;padding:8px 11px}
-  .bf-botao .longo{display:none}
+  .bf-selo{font-size:.66rem;letter-spacing:.14em;padding:7px 10px}
+  .bf-dias{font-size:.92rem}
+  .bf-dias b{font-size:1.05rem}
+  .bf-frase{font-size:.86rem}
+  .bf-botao{font-size:.84rem;padding:8px 12px}
 }
+@media (prefers-reduced-motion:reduce){ .bf-trilho{animation:none} }
 
 /* ============ MENU (pílula vinho flutuante) ============ */
 .topo{position:fixed;top:12px;left:0;right:0;z-index:100;pointer-events:none}
@@ -502,12 +506,9 @@ section[id]{scroll-margin-top:90px}
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Faixa com a contagem para a Black Friday (o texto e a data são calculados no script) -->
+<!-- O botão "Garantir vaga" abre o WhatsApp com uma mensagem pronta pedindo orçamento -->
 <aside class="faixa-bf" id="faixa-bf" aria-label="Contagem para a Black Friday" hidden>
-  <span class="bf-selo">Black Friday</span>
-  <span class="bf-dias" id="bf-dias">Faltam <b>0</b> dias</span>
-  <span class="bf-frase">Criativos que vendem</span>
-  <!-- O botão abre o WhatsApp com uma mensagem pronta pedindo orçamento -->
-  <a class="bf-botao" id="bf-botao" href="#contato" target="_blank" rel="noopener">Solicitar orçamento<span class="longo"> para a Black</span> →</a>
+  <div class="bf-trilho" id="bf-trilho"></div>
 </aside>
 
 <!-- ============ MENU ============ -->
@@ -1448,10 +1449,20 @@ $("#compartilhar").addEventListener("click", async (e) => {
   if (hoje < inicio) return;
   const dias = Math.round((bf - hoje) / 86400000);
   const data = bf.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
-  $("#bf-dias").innerHTML = dias === 0 ? "<b>É hoje!</b>" : `Faltam <b>${dias}</b> ${dias === 1 ? "dia" : "dias"}`;
-  $("#bf-dias").title = `Black Friday: ${data}`;
-  const msg = `Oi, Natalia! Vi seu portfólio e quero um orçamento de conteúdo para a Black Friday (${data}).`;
-  $("#bf-botao").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  const textoDias = dias === 0 ? "<b>É hoje!</b>" : `Faltam <b>${dias}</b> ${dias === 1 ? "dia" : "dias"}`;
+  const msg = `Oi, Natalia! Vi seu portfólio e quero garantir minha vaga para a Black Friday (${data}).`;
+  const link = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  const grupo = (copia) => `
+    <div class="bf-grupo"${copia ? ' aria-hidden="true"' : ""}>
+      <span class="bf-selo">Black Friday</span>
+      <span class="bf-dias" title="Black Friday: ${data}">${textoDias}</span>
+      <span class="bf-frase">Criativos que vendem</span>
+      <a class="bf-botao" href="${link}" target="_blank" rel="noopener"${copia ? ' tabindex="-1"' : ""}>Garantir vaga →</a>
+      <span class="bf-sep" aria-hidden="true">✦</span>
+    </div>`;
+  // metade original + metade repetida, para o movimento não ter emenda
+  const metade = (copia) => [0, 1, 2, 3].map((i) => grupo(copia || i > 0)).join("");
+  $("#bf-trilho").innerHTML = metade(false) + metade(true);
   $("#faixa-bf").hidden = false;
   document.body.classList.add("com-bf");
 })();
