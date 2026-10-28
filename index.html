@@ -86,6 +86,20 @@ section[id]{scroll-margin-top:90px}
 .barra a.circulo{text-decoration:none}
 .barra a.circulo:hover{background:rgba(236,225,208,.15)}
 
+/* ============ FAIXA DA BLACK FRIDAY (aparece de 1º de outubro até o dia da Black Friday) ============ */
+.faixa-bf{position:fixed;top:0;left:0;right:0;z-index:101;height:38px;display:flex;align-items:center;overflow:hidden;
+  background:#140807;color:var(--marfim);text-decoration:none;border-bottom:1px solid rgba(251,247,238,.15)}
+.faixa-bf[hidden]{display:none}
+.faixa-bf-trilho{display:flex;width:max-content;animation:rolar 38s linear infinite}
+.faixa-bf:hover .faixa-bf-trilho{animation-play-state:paused}
+.faixa-bf-trilho span{display:inline-flex;align-items:center;gap:14px;padding-right:14px;white-space:nowrap;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+.faixa-bf-trilho b{font-family:var(--display);font-weight:400;font-size:1.25rem;letter-spacing:0;color:#ffd9d4;text-transform:none}
+.faixa-bf-trilho i{font-style:normal;color:#e0574b}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.com-bf .topo{top:50px}
+.com-bf .capa{padding-top:156px}
+.com-bf section[id]{scroll-margin-top:128px}
+
 /* ============ MENU (pílula vinho flutuante) ============ */
 .topo{position:fixed;top:12px;left:0;right:0;z-index:100;pointer-events:none}
 .topo .container{pointer-events:auto;display:flex;align-items:center;gap:14px;background:var(--vinho);color:var(--nude-claro);border-radius:999px;padding:8px 10px 8px 8px;
@@ -386,6 +400,7 @@ section[id]{scroll-margin-top:90px}
 @media (max-width:1240px){ .sobre-topo .polaroid{right:0;top:-100px;width:110px} }
 @media (max-width:1060px){
   .hamburguer{display:block}
+  .com-bf .menu{top:116px}
   .menu{position:fixed;top:78px;left:16px;right:16px;background:var(--vinho);border-radius:var(--raio-m);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);
     max-height:0;overflow:hidden;visibility:hidden;transition:max-height .35s ease,visibility .35s}
   .menu.aberto{max-height:520px;visibility:visible}
@@ -406,6 +421,7 @@ section[id]{scroll-margin-top:90px}
 }
 @media (max-width:600px){
   .capa{padding-top:100px}
+  .com-bf .capa{padding-top:138px}
   .palco{grid-template-columns:1fr;text-align:center}
   .lado,.lado--esq,.lado--dir{align-items:center;text-align:center}
   .lado .nota{align-items:center!important}
@@ -473,6 +489,12 @@ section[id]{scroll-margin-top:90px}
 </svg>
 
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- Faixa com a contagem para a Black Friday (o texto e a data são calculados no script) -->
+<a class="faixa-bf" id="faixa-bf" href="#contato" hidden>
+  <span class="sr-only" id="faixa-bf-leitor"></span>
+  <div class="faixa-bf-trilho" id="faixa-bf-trilho" aria-hidden="true"></div>
+</a>
 
 <!-- ============ MENU ============ -->
 <header class="topo" id="topo">
@@ -1396,6 +1418,31 @@ $("#compartilhar").addEventListener("click", async (e) => {
   } catch (_) { botao.textContent = url; }
   setTimeout(() => { botao.textContent = "Compartilhar portfólio"; }, 2500);
 });
+
+/* Faixa da Black Friday: a data é calculada sozinha (a sexta depois da 4ª quinta de novembro).
+   Aparece de 1º de outubro até o dia da Black Friday e some depois. */
+(function () {
+  const blackFriday = (ano) => {
+    const d = new Date(ano, 10, 1);                     // 1º de novembro
+    const primeiraQuinta = 1 + ((4 - d.getDay() + 7) % 7);
+    return new Date(ano, 10, primeiraQuinta + 21 + 1);  // 4ª quinta + 1 dia
+  };
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  let bf = blackFriday(hoje.getFullYear());
+  if (hoje > bf) bf = blackFriday(hoje.getFullYear() + 1);
+  const inicio = new Date(bf.getFullYear(), 9, 1);     // 1º de outubro
+  if (hoje < inicio) return;
+  const dias = Math.round((bf - hoje) / 86400000);
+  const data = bf.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
+  const frase = dias === 0
+    ? `<i>✦</i> É hoje! <b>Black Friday</b> <i>✦</i> Bora vender com conteúdo que converte`
+    : `<i>✦</i> Contagem <b>Black Friday</b> <i>✦</i> Faltam <b>${dias} ${dias === 1 ? "dia" : "dias"}</b> (${data}) <i>✦</i> Garanta já os conteúdos da sua campanha`;
+  const item = `<span>${frase}</span>`;
+  $("#faixa-bf-trilho").innerHTML = item.repeat(8);
+  $("#faixa-bf-leitor").textContent = dias === 0 ? "Hoje é Black Friday. Fale comigo para a sua campanha." : `Faltam ${dias} dias para a Black Friday, em ${data}. Garanta os conteúdos da sua campanha.`;
+  $("#faixa-bf").hidden = false;
+  document.body.classList.add("com-bf");
+})();
 
 /* Ano automático */
 $("#ano").textContent = new Date().getFullYear();
