@@ -1449,7 +1449,8 @@ $("#depoimentos").innerHTML = depoimentos.map((d) => `
 
 /* Compartilhar o portfólio */
 $("#compartilhar").addEventListener("click", async (e) => {
-  const botao = e.currentTarget, url = location.href.split("#")[0];
+  // sempre o endereço do portfólio público, mesmo dentro da versão com valores
+  const botao = e.currentTarget, url = new URL("./", location.href).href;
   try {
     if (navigator.share) { await navigator.share({ title: "Natalia Silva · Portfólio", url }); return; }
     await navigator.clipboard.writeText(url);
