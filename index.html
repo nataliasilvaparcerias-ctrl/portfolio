@@ -1144,7 +1144,8 @@ const servicosUGC = [
 ];
 
 /* Influenciadora (divulgação no meu perfil) */
-const seguidores = "00 mil seguidores";   /* PLACEHOLDER: troque pelo seu número de seguidores */
+const seguidores = "97,1 mil seguidores no Instagram";   /* atualize quando o número mudar */
+const seguidoresTiktok = "59,4 mil no TikTok";
 const servicosInfluenciadora = [
   { titulo: "Reels no meu perfil",   descricao: "Vídeo publicado no meu Instagram, com a confiança de quem já me acompanha." },
   { titulo: "Sequência de stories",  descricao: "Stories com a minha rotina usando o produto, link e chamada para comprar." },
@@ -1391,7 +1392,7 @@ const cardsServico = (lista) => lista.map((s, i) => `
 $("#grade-ugc").innerHTML = cardsServico(servicosUGC);
 $("#grade-infl").innerHTML = cardsServico(servicosInfluenciadora);
 $("#grade-noiva").innerHTML = cardsServico(servicosNoiva);
-$("#intro-infl").textContent = `Sua marca no meu perfil @natallia_silvaa, para ${seguidores} que confiam nas minhas dicas.`;
+$("#intro-infl").textContent = `Sua marca nos meus perfis, para ${seguidores} e ${seguidoresTiktok} que confiam nas minhas dicas.`;
 
 /* Contagem até o casamento */
 (function () {
