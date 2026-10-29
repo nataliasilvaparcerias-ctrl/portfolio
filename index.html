@@ -303,6 +303,11 @@ section[id]{scroll-margin-top:90px}
 .servico h3{font-size:1.7rem;text-transform:uppercase;margin:12px 0 12px}
 .servico p{font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#f2e4d6;margin:0}
 .painel[hidden]{display:none}
+.servico{display:flex;flex-direction:column;box-sizing:border-box}
+.servico .pedir{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:20px;font-family:var(--ui);font-weight:600;font-size:.84rem;color:var(--nude-claro);text-decoration:none}
+.servico .pedir svg{width:15px;height:15px;transition:transform .25s ease}
+.servico .pedir:hover svg{transform:translateX(3px)}
+.painel-nota{font-family:var(--mono);font-size:.72rem;line-height:1.6;color:#cfc3b4;margin:18px 0 0;max-width:72ch}
 
 /* ============ PROJETOS (Diário da Noiva e Let's Fit) ============ */
 .projetos-grade{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -783,6 +788,7 @@ section[id]{scroll-margin-top:90px}
         <p class="painel-intro">Sua marca dentro da história real de um casamento. Ideal para vestidos, beleza, joias, decoração, buffet, casa, viagem e lua de mel.</p>
         <ul class="servicos-grade" id="grade-noiva"></ul>
       </div>
+      <p class="painel-nota">Me chama no WhatsApp contando o que a sua marca precisa e eu te envio a tabela de valores com os pacotes.</p>
     </div>
   </section>
 
@@ -1380,6 +1386,7 @@ const cardsServico = (lista) => lista.map((s, i) => `
     <span class="num">${String(i + 1).padStart(2, "0")}</span>
     <h3>${esc(s.titulo)}</h3>
     <p>${esc(s.descricao)}</p>
+    <a class="pedir" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Oi, Natalia! Vi seu portfólio e quero um orçamento de ${s.titulo}.`)}" target="_blank" rel="noopener">Pedir orçamento <svg aria-hidden="true"><use href="#seta-dir"/></svg></a>
   </article></li>`).join("");
 $("#grade-ugc").innerHTML = cardsServico(servicosUGC);
 $("#grade-infl").innerHTML = cardsServico(servicosInfluenciadora);
