@@ -71,6 +71,16 @@ h1 em{font-style:italic;text-transform:none}
 /* Carrossel de projetos */
 .carrossel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:0 -16px;padding:0 16px 8px;scroll-padding-left:16px;scrollbar-width:none}
 .carrossel::-webkit-scrollbar{display:none}
+.cabeca-carrossel{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cabeca-carrossel h2{margin:0}
+.setas{display:flex;gap:8px;flex:none}
+.seta-car{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--vinho);background:var(--vinho);color:var(--marfim);display:grid;place-items:center;cursor:pointer;padding:0;transition:opacity .2s ease,background-color .2s ease}
+.seta-car svg{width:18px;height:18px}
+.seta-car:hover:not(:disabled){background:var(--vinho-escuro)}
+.seta-car:disabled{background:transparent;color:var(--vinho);opacity:.35;cursor:default}
+.bolinhas{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.bolinhas span{width:8px;height:8px;border-radius:50%;background:var(--vinho);opacity:.3;transition:opacity .2s ease}
+.bolinhas span.ativa{opacity:1}
 .projeto{flex:0 0 min(78%,340px);scroll-snap-align:start;background:var(--nude);border-radius:24px;padding:10px;display:flex;flex-direction:column}
 .projeto img{width:100%;aspect-ratio:5/3;object-fit:cover;border-radius:16px}
 .projeto-corpo{padding:12px 6px 6px;display:flex;flex-direction:column;gap:4px;flex:1}
@@ -158,8 +168,15 @@ h1 em{font-style:italic;text-transform:none}
   </section>
 
   <section aria-labelledby="titulo-projetos">
-    <h2 id="titulo-projetos">Meus <em>projetos</em></h2>
+    <div class="cabeca-carrossel">
+      <h2 id="titulo-projetos">Meus <em>projetos</em></h2>
+      <div class="setas">
+        <button type="button" class="seta-car" id="proj-ant" aria-label="Projeto anterior"><svg aria-hidden="true" style="transform:scaleX(-1)"><use href="#seta"/></svg></button>
+        <button type="button" class="seta-car" id="proj-prox" aria-label="Próximo projeto"><svg aria-hidden="true"><use href="#seta"/></svg></button>
+      </div>
+    </div>
     <ul class="carrossel" id="projetos"></ul>
+    <div class="bolinhas" id="proj-bolinhas" aria-hidden="true"></div>
   </section>
 
   <section id="vitrines" aria-labelledby="titulo-vitrines" hidden>
@@ -271,6 +288,41 @@ $("#projetos").innerHTML = projetos.map((p) => `
       <a href="${esc(p.link)}"${externo(p.link)} aria-label="${esc(p.botao)}: ${esc(p.titulo)}">${esc(p.botao)}</a>
     </div>
   </li>`).join("");
+
+/* Carrossel de projetos: setas para passar e bolinhas mostrando em qual cartão a pessoa está */
+(function () {
+  const trilho = $("#projetos"), ant = $("#proj-ant"), prox = $("#proj-prox"), bolinhas = $("#proj-bolinhas");
+  const cartoes = [...trilho.children];
+  bolinhas.innerHTML = cartoes.map(() => "<span></span>").join("");
+  const pontos = [...bolinhas.children];
+  const inicioDo = (c) => c.offsetLeft - cartoes[0].offsetLeft;
+  const atual = () => {
+    const max = trilho.scrollWidth - trilho.clientWidth;
+    if (trilho.scrollLeft >= max - 2) return cartoes.length - 1;
+    let melhor = 0;
+    cartoes.forEach((c, i) => { if (Math.abs(inicioDo(c) - trilho.scrollLeft) < Math.abs(inicioDo(cartoes[melhor]) - trilho.scrollLeft)) melhor = i; });
+    return melhor;
+  };
+  const atualizar = () => {
+    const i = atual();
+    pontos.forEach((p, n) => p.classList.toggle("ativa", n === i));
+    ant.disabled = i === 0;
+    prox.disabled = i === cartoes.length - 1;
+  };
+  const ir = (i) => {
+    const alvo = inicioDo(cartoes[Math.max(0, Math.min(cartoes.length - 1, i))]);
+    const suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    trilho.scrollTo({ left: alvo, behavior: suave ? "smooth" : "auto" });
+    /* Se o navegador não animou, pula direto */
+    const antes = trilho.scrollLeft;
+    setTimeout(() => { if (Math.abs(trilho.scrollLeft - antes) < 2) trilho.scrollLeft = alvo; atualizar(); }, 450);
+  };
+  ant.addEventListener("click", () => ir(atual() - 1));
+  prox.addEventListener("click", () => ir(atual() + 1));
+  trilho.addEventListener("scroll", atualizar, { passive: true });
+  window.addEventListener("resize", atualizar);
+  atualizar();
+})();
 
 const vitrinesAtivas = vitrines.filter((v) => v.link);
 const cartaoItem = (i) => `
