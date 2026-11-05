@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natalia Silva · Links</title>
+<meta name="description" content="Todos os links da Natalia Silva: portfólio, cupons, achadinhos, redes sociais e contato para parcerias.">
+<meta name="theme-color" content="#5e1414">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --taupe:#a8967e;
+  --nude:#e0d0b9;
+  --nude-claro:#ece1d0;
+  --marfim:#fbf7ee;
+  --vinho:#5e1414;
+  --vinho-escuro:#3d0b0b;
+  --tinta:#2a1a15;
+  --tinta-suave:#5a463c;
+  --display:"Instrument Serif", "Didot", "Bodoni MT", Georgia, serif;
+  --mono:"DM Mono", ui-monospace, "Courier New", monospace;
+  --ui:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--taupe);color:var(--tinta);font-family:var(--ui);font-size:1rem;line-height:1.5}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--marfim);outline-offset:3px}
+.pagina{width:min(520px,100%);margin-inline:auto;padding:20px 16px 36px;display:grid;gap:14px}
+
+/* Aviso do modo de exemplos */
+.aviso{background:var(--marfim);color:var(--vinho);border-radius:14px;padding:10px 14px;font-family:var(--mono);font-size:.72rem;line-height:1.5}
+
+/* Cartão de perfil */
+.perfil{background:var(--vinho);border-radius:32px;padding:12px}
+.perfil-dentro{background:var(--nude);border-radius:22px;padding:24px 18px 20px;text-align:center}
+.avatar{width:104px;height:104px;border-radius:50%;overflow:hidden;border:3px solid var(--vinho);margin:0 auto 12px}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+h1{font-family:var(--display);font-weight:400;font-size:2.5rem;line-height:1;text-transform:uppercase;color:var(--vinho);margin:0}
+h1 em{font-style:italic;text-transform:none}
+.arroba{font-weight:600;font-size:.92rem;margin:8px 0 6px}
+.bio{font-family:var(--mono);font-size:.76rem;line-height:1.65;color:var(--tinta-suave);margin:0}
+.redes{display:flex;justify-content:center;gap:10px;list-style:none;margin:14px 0 2px;padding:0}
+.redes a{width:44px;height:44px;border-radius:50%;background:var(--nude);color:var(--marfim);display:grid;place-items:center;transition:transform .2s ease}
+.perfil .redes a{background:transparent;color:var(--nude-claro);border:1.5px solid rgba(236,225,208,.65)}
+.redes a:hover{transform:translateY(-2px)}
+.redes svg{width:20px;height:20px}
+
+/* Blocos */
+.bloco{background:var(--nude);border-radius:26px;padding:16px}
+.bloco h2{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1;text-transform:uppercase;color:var(--vinho);margin:2px 4px 12px}
+.bloco h2 em{font-style:italic;text-transform:none}
+.lista{display:grid;gap:9px;list-style:none;margin:0;padding:0}
+
+/* Botão de link */
+.link{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 14px;border-radius:16px;background:var(--marfim);color:var(--vinho);text-decoration:none;transition:transform .2s ease,background-color .2s ease}
+.link:hover{transform:translateY(-2px);background:#fff}
+.link--forte{background:var(--vinho);color:var(--marfim)}
+.link--forte:hover{background:var(--vinho-escuro)}
+.link-img{width:48px;height:48px;border-radius:12px;object-fit:cover;flex:none}
+.link-textos{flex:1;min-width:0}
+.link b{display:block;font-weight:600;font-size:.97rem;line-height:1.25}
+.link small{display:block;font-size:.76rem;line-height:1.35;opacity:.78;margin-top:2px}
+.link-seta{width:18px;height:18px;flex:none}
+:focus-visible.link,.link:focus-visible{outline-color:var(--vinho)}
+
+/* Cupons */
+.cupom{background:var(--marfim);border-radius:16px;padding:13px 14px;display:grid;gap:9px}
+.cupom-topo b{display:block;font-weight:600;font-size:.97rem;color:var(--vinho);line-height:1.25}
+.cupom-topo small{display:block;font-size:.78rem;color:var(--tinta-suave);margin-top:2px}
+.cupom-acoes{display:flex;flex-wrap:wrap;gap:8px}
+.cupom-copiar{flex:1 1 150px;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;border:1.5px dashed var(--vinho);border-radius:12px;background:transparent;color:var(--vinho);cursor:pointer;font:inherit}
+.cupom-copiar:focus-visible,.cupom-ir:focus-visible{outline-color:var(--vinho)}
+.cupom-copiar code{font-family:var(--mono);font-weight:500;font-size:.92rem;letter-spacing:.06em;overflow-wrap:anywhere;text-align:left}
+.cupom-copiar span{font-size:.74rem;font-weight:600;white-space:nowrap}
+.cupom-ir{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;border-radius:12px;background:var(--vinho);color:var(--marfim);font-weight:600;font-size:.86rem;text-decoration:none;white-space:nowrap}
+
+.rodape{text-align:center;font-family:var(--mono);font-size:.68rem;color:var(--tinta);margin:6px 0 0}
+.rodape a{font-weight:500}
+.alerta{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--tinta);color:var(--marfim);padding:10px 16px;border-radius:999px;font-size:.84rem;font-weight:500;white-space:nowrap;z-index:10}
+.alerta[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{transition-duration:.01ms!important} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="insta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.7c-1.4 0-2.7-.4-3.8-1.2v6.2a6 6 0 1 1-6-6c.3 0 .6 0 .9.1v2.9a3.1 3.1 0 1 0 2.2 3V3z"/></symbol>
+  <symbol id="youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.200 0-7.800.4a2.600 2.600 0 0 0-1.800 1.800A27 27 0 0 0 2 12a27 27 0 0 0 .4 4.800 2.600 2.600 0 0 0 1.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.600 2.600 0 0 0 1.800-1.800A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.800zM10 15V9l5.200 3z"/></symbol>
+  <symbol id="whats" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2zm0 18.200c-1.500 0-3-.4-4.300-1.200l-.3-.2-3 .8.800-2.900-.2-.3A8.200 8.200 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.2-.3.2-.5.1a6.700 6.700 0 0 1-3.300-2.900c-.3-.4.3-.4.7-1.400.1-.2 0-.3 0-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.200c0 1.300.9 2.500 1 2.700.1.200 1.800 2.800 4.400 3.900 1.600.7 2.300.8 3.100.6.500-.1 1.500-.6 1.700-1.200.2-.6.2-1.100.2-1.200-.1-.1-.3-.2-.5-.3z"/></symbol>
+  <symbol id="email" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm-1 1 9 7 9-7"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<main class="pagina">
+  <p class="aviso" id="aviso" hidden>Modo de exemplos: você está vendo como a página fica com cupons e achadinhos. Essas informações são fictícias e não aparecem na página oficial.</p>
+
+  <section class="perfil" aria-labelledby="nome">
+    <div class="perfil-dentro">
+      <div class="avatar"><img src="imagens/natalia-capa.jpg" alt="Foto de Natalia Silva" width="918" height="1782"></div>
+      <h1 id="nome">Natalia <em>Silva</em></h1>
+      <p class="arroba">@natallia_silvaa</p>
+      <p class="bio">UGC creator e influenciadora em Cabedelo. Storytelling e dicas de amiga, com a leveza da praia.</p>
+    </div>
+    <ul class="redes" id="redes" aria-label="Minhas redes sociais"></ul>
+  </section>
+
+  <section class="bloco" aria-labelledby="titulo-principais">
+    <h2 id="titulo-principais">Comece <em>por aqui</em></h2>
+    <ul class="lista" id="principais"></ul>
+  </section>
+
+  <section class="bloco" id="bloco-cupons" aria-labelledby="titulo-cupons" hidden>
+    <h2 id="titulo-cupons">Meus <em>cupons</em></h2>
+    <ul class="lista" id="cupons"></ul>
+  </section>
+
+  <section class="bloco" id="bloco-afiliados" aria-labelledby="titulo-afiliados" hidden>
+    <h2 id="titulo-afiliados">Meus <em>achadinhos</em></h2>
+    <ul class="lista" id="afiliados"></ul>
+  </section>
+
+  <p class="rodape">© <span id="ano"></span> Natalia Silva · <a href="./">ver portfólio</a></p>
+</main>
+
+<div class="alerta" id="alerta" role="status" hidden></div>
+
+<script>
+/* =========================================================
+   LINKS DA BIO: edite aqui, sem mexer no resto da página
+   ========================================================= */
+
+/* Redes sociais (ícones no cartão de perfil) */
+const redes = [
+  { nome: "Instagram", icone: "insta",   link: "https://www.instagram.com/natallia_silvaa/" },
+  { nome: "TikTok",    icone: "tiktok",  link: "https://www.tiktok.com/@natalia_silvaah" },
+  { nome: "YouTube",   icone: "youtube", link: "https://www.youtube.com/@natallia_silvaa" },
+  { nome: "WhatsApp",  icone: "whats",   link: "https://wa.me/5563992264116" },
+  { nome: "E-mail",    icone: "email",   link: "mailto:nataliasilvaparcerias@gmail.com" }
+];
+
+/* Links principais. forte: true deixa o botão em vinho */
+const principais = [
+  { titulo: "Meu portfólio", descricao: "Trabalhos, resultados e serviços para marcas", link: "./", forte: true },
+  { titulo: "Quero fazer uma parceria", descricao: "Peça um orçamento pelo WhatsApp", link: "https://wa.me/5563992264116?text=" + encodeURIComponent("Oi, Natalia! Vim pela sua bio e quero falar sobre uma parceria.") },
+  { titulo: "Let's Fit", descricao: "Conheça a minha marmitaria fitness", link: "https://youtube.com/shorts/rmeK0ichc38" }
+];
+
+/* Cupons: copie uma linha para cada cupom e preencha.
+   marca: nome da marca
+   codigo: o cupom que a pessoa copia
+   descricao: o que o cupom dá
+   link: endereço da loja (pode deixar "" se não tiver)
+   Enquanto esta lista estiver vazia, o bloco "Meus cupons" não aparece.
+   Modelo: { marca: "Nome da marca", codigo: "NATALIA10", descricao: "10% de desconto", link: "https://..." }, */
+const cupons = [
+];
+
+/* Links de afiliada: copie uma linha para cada produto e preencha.
+   titulo: nome do produto ou da loja
+   descricao: uma frase curta (pode deixar "")
+   link: seu link de afiliada
+   imagem: foto na pasta "imagens" (pode deixar "")
+   Enquanto esta lista estiver vazia, o bloco "Meus achadinhos" não aparece.
+   Modelo: { titulo: "Nome do produto", descricao: "Por que eu amo", link: "https://...", imagem: "" }, */
+const afiliados = [
+];
+
+/* Exemplos fictícios: só aparecem abrindo links.html?modelo, para ver como a página fica */
+const exemplosCupons = [
+  { marca: "Marca de exemplo", codigo: "EXEMPLO10", descricao: "10% de desconto na primeira compra", link: "#" },
+  { marca: "Outra marca de exemplo", codigo: "EXEMPLO15", descricao: "15% de desconto em todo o site", link: "" }
+];
+const exemplosAfiliados = [
+  { titulo: "Produto de exemplo", descricao: "Uma frase curta sobre o produto", link: "#", imagem: "imagens/fotos/foto-18.jpg" },
+  { titulo: "Loja de exemplo", descricao: "Link de afiliada da loja", link: "#", imagem: "" }
+];
+
+/* =========================================================
+   A PARTIR DAQUI É O FUNCIONAMENTO DA PÁGINA
+   ========================================================= */
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const externo = (url) => /^https?:/.test(url) ? ' target="_blank" rel="noopener"' : "";
+const modelo = new URLSearchParams(location.search).has("modelo");
+const listaCupons = modelo ? exemplosCupons : cupons;
+const listaAfiliados = modelo ? exemplosAfiliados : afiliados;
+$("#aviso").hidden = !modelo;
+
+$("#redes").innerHTML = redes.map((r) => `
+  <li><a href="${esc(r.link)}"${externo(r.link)} aria-label="${esc(r.nome)}"><svg aria-hidden="true"><use href="#${esc(r.icone)}"/></svg></a></li>`).join("");
+
+const botaoLink = (l) => `
+  <li><a class="link${l.forte ? " link--forte" : ""}" href="${esc(l.link)}"${externo(l.link)}>
+    ${l.imagem ? `<img class="link-img" src="${esc(l.imagem)}" alt="" loading="lazy">` : ""}
+    <span class="link-textos"><b>${esc(l.titulo)}</b>${l.descricao ? `<small>${esc(l.descricao)}</small>` : ""}</span>
+    <svg class="link-seta" aria-hidden="true"><use href="#seta"/></svg>
+  </a></li>`;
+
+$("#principais").innerHTML = principais.map(botaoLink).join("");
+
+if (listaAfiliados.length) {
+  $("#afiliados").innerHTML = listaAfiliados.map(botaoLink).join("");
+  $("#bloco-afiliados").hidden = false;
+}
+
+if (listaCupons.length) {
+  $("#cupons").innerHTML = listaCupons.map((c) => `
+    <li class="cupom">
+      <div class="cupom-topo"><b>${esc(c.marca)}</b>${c.descricao ? `<small>${esc(c.descricao)}</small>` : ""}</div>
+      <div class="cupom-acoes">
+        <button type="button" class="cupom-copiar" data-codigo="${esc(c.codigo)}" aria-label="Copiar o cupom ${esc(c.codigo)}"><code>${esc(c.codigo)}</code><span>Copiar</span></button>
+        ${c.link ? `<a class="cupom-ir" href="${esc(c.link)}"${externo(c.link)} aria-label="Ir para a loja ${esc(c.marca)}">Ir para a loja</a>` : ""}
+      </div>
+    </li>`).join("");
+  $("#bloco-cupons").hidden = false;
+}
+
+/* Copiar cupom */
+const alerta = $("#alerta");
+let tempoAlerta;
+function avisar(texto) {
+  alerta.textContent = texto;
+  alerta.hidden = false;
+  clearTimeout(tempoAlerta);
+  tempoAlerta = setTimeout(() => { alerta.hidden = true; }, 2200);
+}
+function copiarReserva(texto) {
+  const campo = document.createElement("textarea");
+  campo.value = texto;
+  campo.setAttribute("readonly", "");
+  campo.style.position = "fixed";
+  campo.style.opacity = "0";
+  document.body.appendChild(campo);
+  campo.select();
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch (_) {}
+  campo.remove();
+  return ok;
+}
+$("#cupons").addEventListener("click", async (e) => {
+  const botao = e.target.closest(".cupom-copiar");
+  if (!botao) return;
+  const codigo = botao.dataset.codigo;
+  let ok = false;
+  try { await navigator.clipboard.writeText(codigo); ok = true; } catch (_) { ok = copiarReserva(codigo); }
+  avisar(ok ? `Cupom ${codigo} copiado!` : `Seu cupom: ${codigo}`);
+});
+
+$("#ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
